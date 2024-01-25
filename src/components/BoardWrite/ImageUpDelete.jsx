@@ -78,7 +78,7 @@ const ImageUpDelete = ({ postImg, setPostImg, board, setBoard }) => {
         updatedPreviewImg.splice(index, 1);
         setPreviewImg(updatedPreviewImg);
 
-        setPostImg(updatedPreviewImg); // Update postImg when removing an image
+        setPostImg(updatedPreviewImg);
         setBoard(prevBoard => ({
             ...prevBoard,
             postImg: updatedPreviewImg,

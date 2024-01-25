@@ -1,19 +1,18 @@
-import GenderDropdown from "./components/BoardWrite/GenderDropdown";
-import ClothingDropdown from "./components/BoardWrite/ClothingDropdown";
-import { Div, Div1, Div10, Div11, Div12, Div14, Div15, Div16, Div17, Div2, Div3, Div4, Div6, Div7, Div8, Div9, DivRoot, Icon, Text1, Wrapper, Text, VectorIcon, Div21, Icon1, Wrapper4, Div18, Wrapper5, Div19, Text2, Wrapper6, Wrapper7, Wrapper8, B, Div13, Div20, IcroundArrowBackIos, Inner, Wrapper1, Wrapper2, Wrapper3, TitleInput, ContentTextarea, Cancelbutton, Registerbutton } from "./assets/ProductRegisterCss";
+import GenderDropdown from "../components/BoardWrite/GenderDropdown";
+import ClothingDropdown from "../components/BoardWrite/ClothingDropdown";
+import { Div, Div1, Div10, Div11, Div12, Div14, Div15, Div16, Div17, Div2, Div3, Div4, Div6, Div7, Div8, Div9, DivRoot, Icon, Text1, Wrapper, Text, VectorIcon, Div21, Icon1, Wrapper4, Div18, Wrapper5, Div19, Text2, Wrapper6, Wrapper7, Wrapper8, B, Div13, Div20, IcroundArrowBackIos, Inner, Wrapper1, Wrapper2, Wrapper3, TitleInput, ContentTextarea, Cancelbutton, Registerbutton } from "../assets/ProductRegisterCss";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import ImageUpDelete from "./components/BoardWrite/ImageUpDelete";
-import PriceFormat from "./components/BoardWrite/PriceFormat";
+import ImageUpDelete from "../components/BoardWrite/ImageUpDelete";
+import PriceFormat from "../components/BoardWrite/PriceFormat";
 import axios, { Axios } from "axios";
-import { CancelButton } from "./assets/BoardWriteCss";
+import { CancelButton } from "../assets/BoardWriteCss";
 
 const ProductRegister = () => {
   const navigate = useNavigate();
   const [price, setPrice] = useState(0);
   const [postImg, setPostImg] = useState([]);
   const [board, setBoard] = useState({
-    postImg: [],
     title: '',
     contents: '',
     price: 0,
@@ -26,12 +25,25 @@ const ProductRegister = () => {
   // 비구조화 할당
   const { title, contents, place } = board;
 
-  // 이미지 보드에 반영 로직
-  const handleImageUpload = (uploadedImages) => {
-    setBoard({
-      ...board,
-      images: uploadedImages,
+  // 이미지 업로드
+  const handleImageUpload = async (uploadedImages) => {
+    // FormData 생성
+    const formData = new FormData();
+    // 업로드된 이미지를 FormData에 추가
+    uploadedImages.forEach((image, index) => {
+      formData.append(`image${index + 1}`, image);
     });
+    try {
+      // Axios를 사용하여 백엔드에 이미지 업로드
+      const response = await axios.post('//localhost:8080/board', formData);
+      // 성공 시 처리
+      alert('등록되었습니다.');
+      navigate('/Home');
+      console.log(response.data);
+    } catch (error) {
+      // 실패 시 처리
+      console.error(error);
+    }
   };
 
   // 타이틀, 본문 보드에 반영
@@ -44,8 +56,10 @@ const ProductRegister = () => {
     console.log(board);
   };
 
+
   // 저장
   const saveBoard = async () => {
+    await handleImageUpload(postImg);
     await axios.post(`//localhost:8080/board`, board).then((res) => {
       alert('등록되었습니다.');
       navigate('/board');

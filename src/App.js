@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+/* App.js */
+import { Route, Routes } from 'react-router-dom';
+import Home from './screens/Home';
+import BoardList from './screens/BoardList';
+import BoardDetail from './screens/BoardDetail';
+import BoardWrite from './screens/BoardWrite';
+import { GlobalStyle } from './assets/createGlobalStyle';
+
+import { GlobalCss } from './global';
+import GenderDropdown from './components/BoardWrite/GenderDropdown';
+import ClothingDropdown from './components/BoardWrite/ClothingDropdown';
+import ProductRegister from './ProductRegister';
+import SeoulDistrictSelector from './components/SeoulDistrictSelector';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalCss />
+      {/* <ProductRegister /> */}
+      {/* <SeoulDistrictSelector /> */}
+      {/* <GlobalStyle /> */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/board" element={<BoardList />} />
+        <Route path="/board/:idx" element={<BoardDetail />} />
+        <Route path="/write" element={<ProductRegister />} />
+      </Routes>
+    </>
   );
 }
 

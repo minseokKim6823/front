@@ -29,13 +29,18 @@ const ProductRegister = () => {
   const handleImageUpload = async (uploadedImages) => {
     // FormData 생성
     const formData = new FormData();
+    console.log(formData);
     // 업로드된 이미지를 FormData에 추가
-    uploadedImages.forEach((image, index) => {
-      formData.append(`image${index + 1}`, image);
+    uploadedImages.forEach((postImg, index) => {
+      formData.append(`postImg${index + 1}`, postImg);
     });
     try {
       // Axios를 사용하여 백엔드에 이미지 업로드
-      const response = await axios.post('//localhost:8080/board', formData);
+      const response = await axios.post('//localhost:8080/board/postImg', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       // 성공 시 처리
       alert('등록되었습니다.');
       navigate('/Home');
@@ -124,13 +129,6 @@ const ProductRegister = () => {
           <Div14>
             <TitleInput placeholder="위치를 입력해주세요"
               type="text" name="place" value={place} onChange={onChange} />
-            {/* 위치 설정 박스 */}
-            {/* <Wrapper>
-              <Div2>위치 설정하기</Div2>
-            </Wrapper> */}
-            {/* <IcroundArrowBackIos> */}
-            {/* <VectorIcon alt="" src="/vector.svg" /> */}
-            {/* </IcroundArrowBackIos> */}
           </Div14>
         </Div9>
         <Div16>

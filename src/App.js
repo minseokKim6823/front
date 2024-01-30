@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <GlobalStyleBoardlist />
-      <ProductRegister />
+      <Test />
       {/* <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/board" element={<BoardList />} />

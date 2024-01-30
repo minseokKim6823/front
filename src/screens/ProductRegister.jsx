@@ -20,6 +20,7 @@ const ProductRegister = () => {
     clothCategory: '',
     place: '',
     currentTime: new Date(),
+    postImg: '',
   });
 
   // 비구조화 할당
@@ -37,14 +38,14 @@ const ProductRegister = () => {
 
   // 저장
   const saveBoard = async () => {
-    const uploadedImageURLs = await handleImageUpload(postImg);
+    const UploadedImageURLs = await handleImageUpload(postImg);
 
     // Update board with the uploadedImageURLs
     const updatedBoard = {
       ...board,
-      postImg: uploadedImageURLs, // Assuming 'postImg' is the field to store image URLs in your board
+      postImg: UploadedImageURLs, // Assuming 'postImg' is the field to store image URLs in your board
     };
-
+    console.log(UploadedImageURLs);
     await axios.post(`//localhost:8080/board`, board).then((res) => {
       alert('등록되었습니다.');
       navigate('/board');
@@ -59,9 +60,7 @@ const ProductRegister = () => {
       secretAccessKey: 'y8AivXwPl2zLJT8M82AogU6730wxgh9U8WumQfKJ',
       region: 'ap-northeast-2',
     });
-
     const uploadedImageURLs = [];
-
     // S3에 업로드할 파라미터 설정
     for (let i = 0; i < postImg.length; i++) {
       const params = {
@@ -70,62 +69,19 @@ const ProductRegister = () => {
         Body: postImg[i],
         ACL: 'public-read',
       };
-
       // S3에 파일 업로드
-      await s3.upload(params).promise().then((data) => {
-        console.log('이미지 업로드 성공', data.Location);
+      await s3.upload(params).promise().then((response) => {
+        // 이미지 URL을 문자열로 변환
+        const imageURLString = String(response.Location);
         // 여기에서 이미지 업로드 후 필요한 작업 수행
-        uploadedImageURLs.push(data.Location);
+        uploadedImageURLs.push(imageURLString);
+        console.log(uploadedImageURLs[0]);
       }).catch((err) => {
         console.error(err);
       });
     }
-
     return uploadedImageURLs;
   };
-  // // 이미지 업로드
-  // const handleImageUpload = async (uploadedImages) => {
-  //   // AWS S3 설정
-  //   const s3 = new AWS.S3({
-  //     accessKeyId: 'AKIAYS2NXFTD43W3T2H3',
-  //     secretAccessKey: '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',
-  //     region: 'ap-northeast-2',
-  //   });
-
-  //   // S3에 업로드할 파라미터 설정
-  //   for (let i = 0; i < postImg.length; i++) {
-  //     const params = {
-  //       Bucket: 'gscproject',
-  //       Key: `images/${postImg[i].name}`,
-  //       Body: postImg[i],
-  //       ACL: 'public-read',
-  //     };
-
-  //     const uploadedImageURLs = [];
-
-  //     // // S3에 파일 업로드
-  //     // s3.upload(params, (err, data) => {
-  //     //   if (err) {
-  //     //     console.error(err);
-  //     //   } else {
-  //     //     console.log('이미지 업로드 성공', data.Location);
-  //     //     // 여기에서 이미지 업로드 후 필요한 작업 수행
-  //     //     uploadedImageURLs.push(data.Location);
-  //     //     console.log(uploadedImageURLs);
-  //     //     console.log(typeof uploadedImageURLs);
-  //     //   }
-  //     // });
-  //     // S3에 파일 업로드
-  //     await s3.upload(params).promise().then((data) => {
-  //       console.log('이미지 업로드 성공', data.Location);
-  //       // 여기에서 이미지 업로드 후 필요한 작업 수행
-  //       uploadedImageURLs.push(data.Location);
-  //     }).catch((err) => {
-  //       console.error(err);
-  //     });
-  //   }
-  //   return uploadedImageURLs;
-  // };
 
   // 취소
   const backToList = () => {

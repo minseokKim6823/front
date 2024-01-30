@@ -1,12 +1,12 @@
 import GenderDropdown from "../components/BoardWrite/GenderDropdown";
 import ClothingDropdown from "../components/BoardWrite/ClothingDropdown";
-import { Div, Div1, Div10, Div11, Div12, Div14, Div15, Div16, Div17, Div2, Div3, Div4, Div6, Div7, Div8, Div9, DivRoot, Icon, Text1, Wrapper, Text, VectorIcon, Div21, Icon1, Wrapper4, Div18, Wrapper5, Div19, Text2, Wrapper6, Wrapper7, Wrapper8, B, Div13, Div20, IcroundArrowBackIos, Inner, Wrapper1, Wrapper2, Wrapper3, TitleInput, ContentTextarea, Cancelbutton, Registerbutton } from "../assets/ProductRegisterCss";
+import { Div, Div1, Div12, Div14, Div15, Div16, Div17, Div3, Div4, Div6, Div7, Div8, Div9, DivRoot, Text1, Wrapper, Text, B, Div13, TitleInput, ContentTextarea, Cancelbutton, Registerbutton } from "../assets/ProductRegisterCss";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import ImageUpDelete from "../components/BoardWrite/ImageUpDelete";
 import PriceFormat from "../components/BoardWrite/PriceFormat";
-import axios, { Axios } from "axios";
-import { CancelButton } from "../assets/BoardWriteCss";
+import axios from "axios";
+import ImageUpload from "../components/BoardWrite/ImageUpload";
+import AWS from 'aws-sdk';
 
 const ProductRegister = () => {
   const navigate = useNavigate();
@@ -25,32 +25,6 @@ const ProductRegister = () => {
   // 비구조화 할당
   const { title, contents, place } = board;
 
-  // 이미지 업로드
-  const handleImageUpload = async (uploadedImages) => {
-    // FormData 생성
-    const formData = new FormData();
-    console.log(formData);
-    // 업로드된 이미지를 FormData에 추가
-    uploadedImages.forEach((postImg, index) => {
-      formData.append(`postImg${index + 1}`, postImg);
-    });
-    try {
-      // Axios를 사용하여 백엔드에 이미지 업로드
-      const response = await axios.post('//localhost:8080/board/postImg', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      // 성공 시 처리
-      alert('등록되었습니다.');
-      navigate('/Home');
-      console.log(response.data);
-    } catch (error) {
-      // 실패 시 처리
-      console.error(error);
-    }
-  };
-
   // 타이틀, 본문 보드에 반영
   const onChange = (event) => {
     const { value, name } = event.target;
@@ -61,15 +35,97 @@ const ProductRegister = () => {
     console.log(board);
   };
 
-
   // 저장
   const saveBoard = async () => {
-    await handleImageUpload(postImg);
+    const uploadedImageURLs = await handleImageUpload(postImg);
+
+    // Update board with the uploadedImageURLs
+    const updatedBoard = {
+      ...board,
+      postImg: uploadedImageURLs, // Assuming 'postImg' is the field to store image URLs in your board
+    };
+
     await axios.post(`//localhost:8080/board`, board).then((res) => {
       alert('등록되었습니다.');
       navigate('/board');
     });
   };
+
+  // 이미지 업로드
+  const handleImageUpload = async (uploadedImages) => {
+    // AWS S3 설정
+    const s3 = new AWS.S3({
+      accessKeyId: 'AKIAYS2NXFTD43W3T2H3',
+      secretAccessKey: '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',
+      region: 'ap-northeast-2',
+    });
+
+    const uploadedImageURLs = [];
+
+    // S3에 업로드할 파라미터 설정
+    for (let i = 0; i < postImg.length; i++) {
+      const params = {
+        Bucket: 'gscproject',
+        Key: `images/${postImg[i].name}`,
+        Body: postImg[i],
+        ACL: 'public-read',
+      };
+
+      // S3에 파일 업로드
+      await s3.upload(params).promise().then((data) => {
+        console.log('이미지 업로드 성공', data.Location);
+        // 여기에서 이미지 업로드 후 필요한 작업 수행
+        uploadedImageURLs.push(data.Location);
+      }).catch((err) => {
+        console.error(err);
+      });
+    }
+
+    return uploadedImageURLs;
+  };
+  // // 이미지 업로드
+  // const handleImageUpload = async (uploadedImages) => {
+  //   // AWS S3 설정
+  //   const s3 = new AWS.S3({
+  //     accessKeyId: 'AKIAYS2NXFTD43W3T2H3',
+  //     secretAccessKey: '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',
+  //     region: 'ap-northeast-2',
+  //   });
+
+  //   // S3에 업로드할 파라미터 설정
+  //   for (let i = 0; i < postImg.length; i++) {
+  //     const params = {
+  //       Bucket: 'gscproject',
+  //       Key: `images/${postImg[i].name}`,
+  //       Body: postImg[i],
+  //       ACL: 'public-read',
+  //     };
+
+  //     const uploadedImageURLs = [];
+
+  //     // // S3에 파일 업로드
+  //     // s3.upload(params, (err, data) => {
+  //     //   if (err) {
+  //     //     console.error(err);
+  //     //   } else {
+  //     //     console.log('이미지 업로드 성공', data.Location);
+  //     //     // 여기에서 이미지 업로드 후 필요한 작업 수행
+  //     //     uploadedImageURLs.push(data.Location);
+  //     //     console.log(uploadedImageURLs);
+  //     //     console.log(typeof uploadedImageURLs);
+  //     //   }
+  //     // });
+  //     // S3에 파일 업로드
+  //     await s3.upload(params).promise().then((data) => {
+  //       console.log('이미지 업로드 성공', data.Location);
+  //       // 여기에서 이미지 업로드 후 필요한 작업 수행
+  //       uploadedImageURLs.push(data.Location);
+  //     }).catch((err) => {
+  //       console.error(err);
+  //     });
+  //   }
+  //   return uploadedImageURLs;
+  // };
 
   // 취소
   const backToList = () => {
@@ -83,7 +139,7 @@ const ProductRegister = () => {
           <Div>
             <Text>사진첨부하기</Text>
           </Div>
-          <ImageUpDelete name='postImg' board={board} setBoard={setBoard}
+          <ImageUpload name='postImg' board={board} setBoard={setBoard}
             postImg={postImg} setPostImg={setPostImg} />
         </Div1>
         <Div7>

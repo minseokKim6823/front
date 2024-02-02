@@ -9,12 +9,15 @@ import GenderDropdown from './components/BoardWrite/GenderDropdown';
 import ClothingDropdown from './components/BoardWrite/ClothingDropdown';
 import ProductRegister from './screens/ProductRegister';
 import GlobalStyleBoardlist from './components/BoardList/GlobalStyleBoardlist';
+import GlobalStyleBoardDetail from './assets/BoardDetailCss/BoardDetailStyle';
+
 
 function App() {
   return (
     <>
-      <GlobalStyleBoardlist />
-      <Test />
+      {/* <GlobalStyleBoardlist />  */}
+      <GlobalStyleBoardDetail />
+      <BoardDetail />
       {/* <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/board" element={<BoardList />} />

@@ -1,7 +1,7 @@
 프론트 연습입니다.
 # Front_Test
 
-BoardList의 검색 부분
+// BoardList의 검색 부분
  {/* <Div5>
           <Div>
             <Text>검색 결과</Text>

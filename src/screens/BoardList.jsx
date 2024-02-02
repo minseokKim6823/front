@@ -1,151 +1,102 @@
-import { Text, Div, Div17, Card, PicIcon, Area, B1, Parent, Div13, Div14, Text3, Card1, Card2, Card3, Card4, Card5, Card6, Card7, Card8, Div18, Div12, Div16, DivRoot } from "../assets/BoardlistCss";
+import { ScrollRestoration, useNavigate } from "react-router-dom";
+import { Text, Div, Div17, Card, PicIcon, Area, B1, Parent, Div13, Div14, Text3, Card1, Card2, Card3, Card4, Card5, Card6, Card7, Card8, Div18, Div12, Div16, DivRoot, Div5, Div4, Div2, Div6, Div11, Div7, Text2, Div8, Div9, Div10, Wrapper, IcroundArrowBackIos, VectorIcon, Div3, Text1, Div1, IcroundArrowBackIosIcon, FrameDiv, B, SearchTitle, SearchButton } from "../assets/BoardListCss/BoardlistCss";
 import React, { useState, useEffect } from 'react';
-
+import ScrollToTopButton from '../components/ScrollToTopButton';
+import axios from "axios";
+import GenderBoardList from "../components/BoardList/GenderBoardList";
+import GenderDropdownSearch from "../components/BoardList/GenderBoardList";
+import ClothingDropdown from "../components/BoardWrite/ClothingDropdown";
+import ClothingDropdownSearch from "../components/BoardList/ClothingDropdownSearch";
 
 const BoardList = () => {
-  const [data, setData] = useState([]); // 전체 데이터
-
-  // // 전체 데이터를 API 등에서 가져오는 useEffect
-  // useEffect(() => {
-  //   // API 호출 또는 데이터 로딩 로직 구현
-  //   // 예: fetch('https://api.example.com/data').then(response => response.json()).then(data => setData(data));
-  // }, []);
-
-  // 임의 유저 데이터
-  const user = [
-    {
-      id: 1,
-      title: "노페",
-      contents: "노스페이스",
-      price: 4000,
-      gender: "남성",
-      clothCategory: "하의",
-      place: "하이루",
-      currentTime: "2024-01-25T10:20:16.555Z"
-    },
-    {
-      id: 2,
-      title: "몽클",
-      contents: "몽클레어",
-      price: 44000,
-      gender: "여성",
-      clothCategory: "아우터",
-      place: "안녕",
-      currentTime: "2024-01-25T10:20:16.555Z"
-    }, {
-      id: 3,
-      title: "뉴진스",
-      contents: "아이돌",
-      price: 4,
-      gender: "여성",
-      clothCategory: "상의",
-      place: "화이팅",
-      currentTime: "2024-01-25T10:20:16.555Z"
-    }, {
-      id: 4,
-      title: "ㄴㅇㄹ",
-      contents: "ㄴㅇㄹ",
-      price: 4,
-      gender: "남성",
-      clothCategory: "하의",
-      place: "ㄴㅇㄹ",
-      currentTime: "2024-01-25T10:20:16.555Z"
-    }, {
-      id: 4,
-      title: "ㄴㅇㄹ",
-      contents: "ㄴㅇㄹ",
-      price: 4,
-      gender: "남성",
-      clothCategory: "하의",
-      place: "ㄴㅇㄹ",
-      currentTime: "2024-01-25T10:20:16.555Z"
-    }, {
-      id: 4,
-      title: "ㄴㅇㄹ",
-      contents: "ㄴㅇㄹ",
-      price: 4,
-      gender: "남성",
-      clothCategory: "하의",
-      place: "ㄴㅇㄹ",
-      currentTime: "2024-01-25T10:20:16.555Z"
-    }, {
-      id: 4,
-      title: "ㄴㅇㄹ",
-      contents: "ㄴㅇㄹ",
-      price: 4,
-      gender: "남성",
-      clothCategory: "하의",
-      place: "ㄴㅇㄹ",
-      currentTime: "2024-01-25T10:20:16.555Z"
-    }, {
-      id: 5,
-      title: "ㄴㅇㄹ",
-      contents: "ㄴㅇㄹ",
-      price: 4,
-      gender: "남성",
-      clothCategory: "하의",
-      place: "ㄴㅇㄹ",
-      currentTime: "2024-01-25T10:20:16.555Z"
-    }, {
-      id: 6,
-      title: "ㄴㅇㄹ",
-      contents: "ㄴㅇㄹ",
-      price: 4,
-      gender: "남성",
-      clothCategory: "하의",
-      place: "ㄴㅇㄹ",
-      currentTime: "2024-01-25T10:20:16.555Z"
-    }, {
-      id: 7,
-      title: "ㄴㅇㄹ",
-      contents: "ㄴㅇㄹ",
-      price: 4,
-      gender: "남성",
-      clothCategory: "하의",
-      place: "ㄴㅇㄹ",
-      currentTime: "2024-01-25T10:20:16.555Z"
-    }, {
-      id: 8,
-      title: "ㄴㅇㄹ",
-      contents: "ㄴㅇㄹ",
-      price: 4,
-      gender: "남성",
-      clothCategory: "하의",
-      place: "ㄴㅇㄹ",
-      currentTime: "2024-01-25T10:20:16.555Z"
-    }, {
-      id: 9,
-      title: "ㄴㅇㄹ",
-      contents: "ㄴㅇㄹ",
-      price: 4,
-      gender: "남성",
-      clothCategory: "하의",
-      place: "ㄴㅇㄹ",
-      currentTime: "2024-01-25T10:20:16.555Z"
-    },
-  ]
-
+  const navigate = useNavigate();
+  const [search, setSearch] = useState({
+    place: '',
+    title: '',
+    gender: '',
+    clothCategory: '',
+  })
+  const title = search;
+  // 타이틀, 본문 보드에 반영
+  const onChange = (event) => {
+    const { value, name } = event.target;
+    setSearch({
+      ...search,
+      [name]: value,
+    });
+    console.log(search);
+  };
+  // 검색
+  const searchBoard = async () => {
+    const { place, title, gender, clothCategory } = search;
+    await axios.get(`//localhost:8080/board/search?query`, {
+      params: {
+        place,
+        title,
+        gender,
+        clothCategory,
+      },
+    }).then((res) => {
+      console.log(res.data);
+    });
+    return searchBoard;
+  };
+  const board = searchBoard;
   return (
-    <DivRoot>
-      <Div18>
-        <Div17>
-          <Card>
-            <PicIcon alt="이미지 로딩중" src="" />
-            <Area>
-              <B1>타이틀</B1>
-              <Parent>
-                <Div12>성별</Div12>
-                <Div13>{`>`}</Div13>
-                <Div14>의류 카테고리</Div14>
-              </Parent>
-              <Div16>
-                <Text3>1000원</Text3>
-              </Div16>
-            </Area>
-          </Card>
-        </Div17>
-      </Div18>
-    </DivRoot>
+    <>
+      <ScrollToTopButton />
+      <DivRoot>
+        <Div18>
+          {/* BoardList의 검색 부분 */}
+          <Div5>
+            <Div>
+              <Text>검색 결과</Text>
+            </Div>
+            <Div4>
+              <Div2>
+                <Wrapper>
+                  <Div1>서울시 종로구 익선동</Div1>
+                </Wrapper>
+                <IcroundArrowBackIos>
+                  <VectorIcon alt="" src="/vector.svg" />
+                </IcroundArrowBackIos>
+              </Div2>
+              <Div3>
+                <Text1>지역</Text1>
+              </Div3>
+            </Div4>
+          </Div5>
+          <Div6 />
+          <Div11>
+            <Div7>
+              <Text2>키워드 및 카테고리</Text2>
+            </Div7>
+            <SearchTitle placeholder="제목을 입력해주세요"
+              type="text" name="title" value={title} onChange={onChange} />
+            <GenderDropdownSearch name='gender' search={search} setSearch={setSearch} />
+            <ClothingDropdownSearch name='clothCategory' search={search} setSearch={setSearch} />
+            <SearchButton placeholder="검색" onClick={searchBoard} />
+          </Div11>
+          {/* 상품 보여주는 부분 */}
+          {board.map((item) => (
+            <Card key={item.id}>
+              <PicIcon src={item.imageUrl} alt="이미지 로딩중" />
+              <Area>
+                <B1>{item.title}</B1>
+                <Parent>
+                  <Div12>{item.gender}</Div12>
+                  <Div13>{`>`}</Div13>
+                  <Div14>{item.clothCategory}</Div14>
+                </Parent>
+                <Div16>
+                  <Text3>{`${item.price}원`}</Text3>
+                </Div16>
+              </Area>
+            </Card>
+          ))}
+        </Div18>
+      </DivRoot>
+    </>
   );
 };
 

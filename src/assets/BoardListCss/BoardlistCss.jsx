@@ -184,6 +184,24 @@ export const Div10 = styled.div`
   justify-content: flex-start;
   padding: var(--padding-xs) var(--padding-3xs);
 `;
+
+export const SearchTitle = styled.input`
+  position: absolute;
+  top: 38px;
+  left: calc(50% - 344px);
+  border-radius: var(--br-5xs);
+  background-color: var(--color-whitesmoke-100);
+  border: 1px solid var(--color-whitesmoke-200);
+  box-sizing: border-box;
+  width: 475px;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--padding-xs) var(--padding-3xs);
+`;
+
 export const Div11 = styled.div`
   width: 716px;
   position: relative;
@@ -191,7 +209,7 @@ export const Div11 = styled.div`
   border: 1px solid var(--color-darkgray);
   box-sizing: border-box;
   height: 112px;
-  overflow: hidden;
+  overflow: visible;
   flex-shrink: 0;
   font-size: var(--font-size-sm);
   color: var(--color-gray-100);
@@ -254,7 +272,7 @@ export const Div18 = styled.div`
   border: 1px solid var(--color-darkgray);
   box-sizing: border-box;
   width: 716px;
-  height: 1064px;
+  /* height: 1064px; */
   overflow: hidden;
   display: flex;
   flex-direction: row;
@@ -272,7 +290,7 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
 `;
-export const Wrapper1 = styled.div`
+export const SearchButton = styled.button`
   position: absolute;
   top: 43px;
   right: 151px;
@@ -328,11 +346,11 @@ export const B = styled.b`
 export const PicIcon = styled.img`
   position: absolute;
   height: calc(100% - 83px);
-  width: 100%;
-  top: 0.5px;
-  right: 0px;
+  width: 90%;
+  top: 5px;
+  right: 10px;
   bottom: 82.5px;
-  left: 0px;
+  left: 10px;
   max-width: 100%;
   overflow: hidden;
   max-height: 100%;
@@ -368,88 +386,11 @@ export const Area = styled.div`
 // Card
 export const Card = styled.div`
   position: relative;
-  top: 12px;
-  left: calc(50% - 334px);
-  border-radius: var(--br-xl);
-  box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.16);
-  width: 200px;
-  height: 260px;
-  overflow: hidden;
-`;
-export const Card1 = styled.div`
-  position: absolute;
-  top: 12.5px;
-  left: calc(50% - 100px);
-  border-radius: var(--br-xl);
-  box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.16);
-  width: 200px;
-  height: 260px;
-  overflow: hidden;
-`;
-export const Card2 = styled.div`
-  position: absolute;
-  top: 13.5px;
-  left: calc(50% + 134px);
-  border-radius: var(--br-xl);
-  box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.16);
-  width: 200px;
-  height: 260px;
-  overflow: hidden;
-`;
-export const Card3 = styled.div`
-  position: absolute;
-  top: 12.5px;
-  left: calc(50% - 334px);
-  border-radius: var(--br-xl);
-  box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.16);
-  width: 200px;
-  height: 260px;
-  overflow: hidden;
-`;
-export const Card4 = styled.div`
-  position: absolute;
-  top: 13px;
-  left: calc(50% - 100px);
-  border-radius: var(--br-xl);
-  box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.16);
-  width: 200px;
-  height: 260px;
-  overflow: hidden;
-`;
-export const Card5 = styled.div`
-  position: absolute;
-  top: 14px;
-  left: calc(50% + 134px);
-  border-radius: var(--br-xl);
-  box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.16);
-  width: 200px;
-  height: 260px;
-  overflow: hidden;
-`;
-export const Card6 = styled.div`
-  position: absolute;
-  top: 11.5px;
-  left: calc(50% - 334px);
-  border-radius: var(--br-xl);
-  box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.16);
-  width: 200px;
-  height: 260px;
-  overflow: hidden;
-`;
-export const Card7 = styled.div`
-  position: absolute;
-  top: 12px;
-  left: calc(50% - 100px);
-  border-radius: var(--br-xl);
-  box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.16);
-  width: 200px;
-  height: 260px;
-  overflow: hidden;
-`;
-export const Card8 = styled.div`
-  position: absolute;
-  top: 13px;
-  left: calc(50% + 134px);
+  top: 30px;
+  left: 20px;
+  margin-left: 20px;
+  margin-bottom: 30px;
+  margin-top: 30px;
   border-radius: var(--br-xl);
   box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.16);
   width: 200px;

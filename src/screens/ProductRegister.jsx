@@ -1,6 +1,6 @@
 import GenderDropdown from "../components/BoardWrite/GenderDropdown";
 import ClothingDropdown from "../components/BoardWrite/ClothingDropdown";
-import { Div, Div1, Div12, Div14, Div15, Div16, Div17, Div3, Div4, Div6, Div7, Div8, Div9, DivRoot, Text1, Wrapper, Text, B, Div13, TitleInput, ContentTextarea, Cancelbutton, Registerbutton } from "../assets/ProductRegisterCss";
+import { Div, Div1, Div12, Div14, Div15, Div16, Div17, Div3, Div4, Div6, Div7, Div8, Div9, DivRoot, Text1, Wrapper, Text, B, Div13, TitleInput, ContentTextarea, Cancelbutton, Registerbutton } from "../assets/BoardWriteCss/ProductRegisterCss";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import PriceFormat from "../components/BoardWrite/PriceFormat";
@@ -46,7 +46,7 @@ const ProductRegister = () => {
       postImg: UploadedImageURLs, // Assuming 'postImg' is the field to store image URLs in your board
     };
     console.log(UploadedImageURLs);
-    await axios.post(`//localhost:8080/board`, board).then((res) => {
+    await axios.post(`//localhost:8080/board/save`, board).then((res) => {
       alert('등록되었습니다.');
       navigate('/board');
     });

@@ -13,6 +13,9 @@ const NavBar = () => {
   const navigateToMyPage = () => {
     navigate("/page/:idx");
   };
+  const navigateToLogin = () => {
+    navigate("/login");
+  }
   return (
     <>
       <NavBarContainer>
@@ -29,11 +32,11 @@ const NavBar = () => {
           <Text2>이벤트</Text2>
         </Frame1> */}
         {/* 로그인 안하면 안보이게 */}
-        <MyPageButton>
+        <MyPageButton onClick={navigateToMyPage}>
           마이페이지
         </MyPageButton>
         {/* 로그인 안하면 로그인, 하면 로그아웃 구현 */}
-        <LoginButton>
+        <LoginButton onClick={navigateToLogin}>
           로그인
         </LoginButton>
       </NavBarContainer>

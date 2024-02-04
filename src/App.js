@@ -8,7 +8,6 @@ import BoardDetail from './screens/BoardDetail';
 
 // GlobalStyle import
 import GlobalHome from './assets/HomeCss/GlobalHome';
-import NavigationBar from './components/Header/NavigationBar';
 import { DivRoot } from './assets/HomeCss/HomeCss';
 import BoardWrite from './screens/BoardWrite';
 import GlobalBoardWrite from './assets/BoardWriteCss/GlobalBoardWrite';

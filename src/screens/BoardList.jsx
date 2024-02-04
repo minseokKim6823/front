@@ -1,7 +1,6 @@
 import { ScrollRestoration, useNavigate } from "react-router-dom";
 import { Text, Div, Div17, Card, PicIcon, Area, B1, Parent, Div13, Div14, Text3, Card1, Card2, Card3, Card4, Card5, Card6, Card7, Card8, Div18, Div12, Div16, DivRoot, Div5, Div4, Div2, Div6, Div11, Div7, Text2, Div8, Div9, Div10, Wrapper, IcroundArrowBackIos, VectorIcon, Div3, Text1, Div1, IcroundArrowBackIosIcon, FrameDiv, B, SearchTitle, SearchButton } from "../assets/BoardListCss/BoardlistCss";
 import React, { useState, useEffect } from 'react';
-import ScrollToTopButton from '../components/ScrollToTopButton';
 import axios from "axios";
 import GenderBoardList from "../components/BoardList/GenderBoardList";
 import GenderDropdownSearch from "../components/BoardList/GenderBoardList";
@@ -44,7 +43,6 @@ const BoardList = () => {
   const board = searchBoard;
   return (
     <>
-      <ScrollToTopButton />
       <Div18>
         {/* BoardList의 검색 부분 */}
         <Div5>

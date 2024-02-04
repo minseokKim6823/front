@@ -23,13 +23,13 @@ export const HomeLogo = styled.img`
 export const ToBoardListButton = styled.button`
   border: none;
   position: absolute;
-  top: 16px;
+  top: 12px;
+  height: 47px;
   left: 70px;
   width: 75px;
-  height: 40px;
   display: flex;
   flex-direction: column;
-  background-color: gray;
+  background-color: #7fccde;
   font-size: var(--font-size-mid);
   padding: var(--padding-sm) 0px;
   justify-content: center;
@@ -45,19 +45,19 @@ export const ToBoardListButton = styled.button`
 export const ToBoardWrite = styled.button`
   border: none;
   position: absolute;
-  top: 16px;
-  height: 40px;
-  width: 75px;
+  top: 12px;
+  height: 47px;
   left: 165px;
+  width: 90px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: var(--padding-3xs);
-  box-shadow: 0px 0px 0px 0px #21825B;
+  background-color: #00AE68;
   font-size: 15px;
   &:hover {
-    background: cornflowerblue;
+    background: green;
     color: white;
     transition: 0.5s;
   }

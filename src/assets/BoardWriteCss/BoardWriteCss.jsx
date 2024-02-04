@@ -27,6 +27,8 @@ export const ContentTextarea = styled.textarea`
   justify-content: flex-start;
   padding: var(--padding-xs) var(--padding-base);
   font-size: 15px;
+  border-radius: 10px;
+  border: solid;
 `;
 
 export const Icon = styled.img`

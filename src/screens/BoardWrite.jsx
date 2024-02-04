@@ -1,6 +1,6 @@
 import GenderDropdown from "../components/BoardWrite/GenderDropdown";
 import ClothingDropdown from "../components/BoardWrite/ClothingDropdown";
-import { Div, Div1, Div12, Div14, Div15, Div16, Div17, Div3, Div4, Div6, Div7, Div8, Div9, DivRoot, Text1, Wrapper, Text, B, Div13, TitleInput, ContentTextarea, Cancelbutton, Registerbutton } from "../assets/BoardWriteCss/ProductRegisterCss";
+import { Div, Div1, Div12, Div14, Div15, Div16, Div17, Div3, Div4, Div6, Div7, Div8, Div9, DivRoot, Text1, Wrapper, Text, B, Div13, TitleInput, ContentTextarea, Cancelbutton, Registerbutton } from "../assets/BoardWriteCss/BoardWriteCss";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import PriceFormat from "../components/BoardWrite/PriceFormat";
@@ -8,7 +8,7 @@ import axios from "axios";
 import ImageUpload from "../components/BoardWrite/ImageUpload";
 import AWS from 'aws-sdk';
 
-const ProductRegister = () => {
+const BoardWrite = () => {
   const navigate = useNavigate();
   const [price, setPrice] = useState(0);
   const [postImg, setPostImg] = useState([]);
@@ -89,7 +89,7 @@ const ProductRegister = () => {
   };
 
   return (
-    <DivRoot>
+    <>
       <Div17>
         <Div1>
           <Div>
@@ -152,8 +152,8 @@ const ProductRegister = () => {
           </Cancelbutton>
         </Div16>
       </Div17>
-    </DivRoot>
+    </>
   );
 };
 
-export default ProductRegister;
+export default BoardWrite;

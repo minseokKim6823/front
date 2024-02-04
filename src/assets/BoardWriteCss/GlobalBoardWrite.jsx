@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-export const GlobalCss = createGlobalStyle`
+const GlobalBoardWrite = createGlobalStyle`
     body {
       margin: 0; line-height: normal;
     }
@@ -44,3 +44,5 @@ export const GlobalCss = createGlobalStyle`
 
 }
 `;
+
+export default GlobalBoardWrite

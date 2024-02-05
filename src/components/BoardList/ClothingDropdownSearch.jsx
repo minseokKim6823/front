@@ -3,11 +3,10 @@ import styled from 'styled-components';
 
 const ClothingDropdownWrapper = styled.div`
   position: absolute;
-  display: inline-block;
-  top: 74px;
+  top: 80px;
   left: calc(50% - 96px);
   border-radius: var(--br-5xs);
-  background-color: #e0e0e0;
+  background-color: var(--color-whitesmoke-100);
   border: 1px solid var(--color-whitesmoke-200);
   box-sizing: border-box;
   width: 234px;
@@ -30,9 +29,9 @@ const DropdownToggle = styled.div`
 
 const DropdownOptions = styled.div`
   position: absolute;
-  top: 100%;
-  left: 10px;
-  width: 200px;
+  top: 33px;
+  left: 7px;
+  width: 220px;
   display: ${props => (props.isOpen ? 'block' : 'none')};
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

@@ -20,12 +20,13 @@ import {
     Div16,
     Div6,
     Div,
-} from '../assets/BoardWriteCss/ProductRegisterCss';
+} from '../assets/BoardWriteCss/BoardWriteCss';
 import PriceFormat from '../components/BoardWrite/PriceFormat';
 import ImageUpload from '../components/BoardWrite/ImageUpload';
 import AWS from 'aws-sdk';
+import { B } from '../assets/BoardListCss/BoardlistCss';
 
-const ProductUpdate = () => {
+const BoardUpdate = () => {
     const navigate = useNavigate();
     const { idx } = useParams();
     const [price, setPrice] = useState(0);
@@ -152,4 +153,4 @@ const ProductUpdate = () => {
     );
 };
 
-export default ProductUpdate;
+export default BoardUpdate;

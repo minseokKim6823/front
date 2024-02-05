@@ -3,14 +3,14 @@ import styled from 'styled-components';
 
 const GenderDropdownWrapper = styled.div`
   position: absolute;
-  top: 108px;
+  top: 110px;
+  height: 35px;
   left: calc(50% - 344px);
-  border-radius: var(--br-5xs);
-  background-color: var(--color-whitesmoke-100);
+  background-color: #e0e0e0;
   border: 1px solid var(--color-whitesmoke-200);
+  border: none;
   box-sizing: border-box;
   width: 234px;
-  height: 42px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -21,8 +21,13 @@ const GenderDropdownWrapper = styled.div`
 `;
 
 const DropdownToggle = styled.div`
-  padding: 10px;
+  padding-left: 0px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-top: 0px;
   width: 200px;
+  height: 110%;
+  text-align: center;
   background-color: #e0e0e0;
   cursor: pointer;
 `;
@@ -30,8 +35,8 @@ const DropdownToggle = styled.div`
 const DropdownOptions = styled.div`
   position: absolute;
   top: 100%;
-  left: 10px;
-  width: 200px;
+  left: 0px;
+  width: 234px;
   display: ${props => (props.isOpen ? 'block' : 'none')};
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

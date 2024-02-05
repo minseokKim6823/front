@@ -16,11 +16,14 @@ const NavBar = () => {
   const navigateToLogin = () => {
     navigate("/login");
   }
+  const navigateToHome = () => {
+    navigate('/');
+  }
   return (
     <>
       <NavBarContainer>
         {/* 로고 */}
-        <HomeLogo alt="" src="/.svg" />
+        <HomeLogo alt="" src="/.svg" onClick={navigateToHome} />
         {/* <a href="" title="Button border blue/green" class="button btnBorder btnBlueGreen">Border</a> */}
         <ToBoardListButton onClick={navigateToBoardList}>
           빌리기

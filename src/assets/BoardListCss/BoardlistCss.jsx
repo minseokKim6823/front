@@ -97,9 +97,9 @@ export const Div4 = styled.div`
   position: absolute;
   top: 0px;
   right: -478px;
-  background-color: var(--color-white);
-  border: 1px solid var(--color-darkgray);
-  box-sizing: border-box;
+  /* background-color: var(--color-white); */
+  /* border: 1px solid var(--color-darkgray);
+  box-sizing: border-box; */
   width: 252px;
   height: 52px;
   text-align: left;
@@ -191,7 +191,7 @@ export const SearchTitle = styled.input`
   left: calc(50% - 344px);
   border-radius: var(--br-5xs);
   background-color: var(--color-whitesmoke-100);
-  border: 1px solid var(--color-whitesmoke-200);
+  border: 1px solid black;
   box-sizing: border-box;
   width: 475px;
   height: 30px;
@@ -208,7 +208,7 @@ export const Div11 = styled.div`
   background-color: var(--color-white);
   border: 1px solid var(--color-darkgray);
   box-sizing: border-box;
-  height: 112px;
+  height: 120px;
   overflow: visible;
   flex-shrink: 0;
   font-size: var(--font-size-sm);
@@ -267,20 +267,18 @@ export const Div18 = styled.div`
   position: absolute;
   top: 70.5px;
   left: calc(50% - 358px);
-  border-radius: 0px 0px var(--br-xl) var(--br-xl);
+  /* border-radius: 0px 0px var(--br-xl) var(--br-xl); */
   background-color: var(--color-white);
   border: 1px solid var(--color-darkgray);
   box-sizing: border-box;
   width: 716px;
-  /* height: 1064px; */
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: flex-start;
 `;
-
 // Wrapper
 export const Wrapper = styled.div`
   flex: 1;
@@ -292,9 +290,10 @@ export const Wrapper = styled.div`
 `;
 export const SearchButton = styled.button`
   position: absolute;
-  top: 43px;
-  right: 151px;
+  top: 47px;
+  right: 140px;
   border-radius: 6px;
+  border: none;
   background-color: #ff5f68;
   width: 69px;
   height: 54px;
@@ -306,7 +305,13 @@ export const SearchButton = styled.button`
   box-sizing: border-box;
   text-align: center;
   font-size: 17px;
+  color: black;
   color: var(--color-white);
+  &:hover {
+    background: green;
+    color: white;
+    transition: 0.5s;
+  }
 `;
 
 export const VectorIcon = styled.img`

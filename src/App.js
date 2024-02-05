@@ -2,16 +2,18 @@
 import { Route, Routes } from 'react-router-dom';
 
 // screen import
-import Home from './screens/Home';
-import BoardList from './screens/BoardList';
-import BoardDetail from './screens/BoardDetail';
+import Home from './screens/Home';  // 홈페이지
+import BoardList from './screens/BoardList';  // 보드 검색
+import BoardDetail from './screens/BoardDetail';  // 보드 상세
+import BoardUpdate from './screens/BoardUpdate';  // 보드 업데이트
+import BoardWrite from './screens/BoardWrite';  // 보드 작성
 
 // GlobalStyle import
 import GlobalHome from './assets/HomeCss/GlobalHome';
 import { DivRoot } from './assets/HomeCss/HomeCss';
-import BoardWrite from './screens/BoardWrite';
 import GlobalBoardWrite from './assets/BoardWriteCss/GlobalBoardWrite';
 import NavBar from './test/NavBar';
+
 
 
 
@@ -41,6 +43,7 @@ function App() {
         <Route path="/board" element={<BoardList />} />
         <Route path="/board/:idx" element={<BoardDetail />} />
         <Route path="/write" element={<BoardWrite />} />
+        <Route path="/update" element={<BoardUpdate />} />
       </Routes>
     </DivRoot>
   );

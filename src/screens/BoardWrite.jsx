@@ -10,6 +10,7 @@ import AWS from 'aws-sdk';
 
 const BoardWrite = () => {
   const navigate = useNavigate();
+
   const [price, setPrice] = useState(0);
   const [postImg, setPostImg] = useState([]);
   const [board, setBoard] = useState({
@@ -93,7 +94,7 @@ const BoardWrite = () => {
       <Div17>
         <Div1>
           <Div>
-            <Text>사진첨부하기</Text>
+            <Text>사진첨부</Text>
           </Div>
           <ImageUpload name='postImg' board={board} setBoard={setBoard}
             postImg={postImg} setPostImg={setPostImg} />
@@ -112,7 +113,6 @@ const BoardWrite = () => {
           </Div3>
           {/* 성별 드롭다운 */}
           <GenderDropdown name='gender' board={board} setBoard={setBoard} />
-          <Div6 />
           <ClothingDropdown name='clothCategory' board={board} setBoard={setBoard} />
         </Div7>
         <Div9>

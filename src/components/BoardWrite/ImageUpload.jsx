@@ -49,7 +49,7 @@ const RemoveButton = styled.button`
 const ImageUpload = ({ postImg, setPostImg, board, setBoard }) => {
     const [previewImg, setPreviewImg] = useState([]);
 
-    function uploadFile(e) {
+    async function uploadFile(e) {
         const fileArr = e.target.files;
         setPostImg(Array.from(fileArr));
         setBoard(prevBoard => ({
@@ -57,17 +57,26 @@ const ImageUpload = ({ postImg, setPostImg, board, setBoard }) => {
             postImg: Array.from(fileArr),
         }));
 
-        // 이미지 미리보기 구현
-        const fileUrl = [];
-        for (let i = 0; i < fileArr.length; i++) {
-            const fileRead = new FileReader();
-            fileRead.onload = function () {
-                fileUrl[i] = fileRead.result;
-                setPreviewImg(prevPreviewImg => [...prevPreviewImg, fileRead.result]);
-            };
-            fileRead.readAsDataURL(fileArr[i]);
+        // 최대 3장까지 이미지 업로드 제한
+        if (fileArr.length > 3) {
+            alert('최대 업로드 이미지 수는 3장입니다.');
+            return;
         }
+
+        // 이미지 미리보기 구현
+        const fileUrl = await Promise.all(Array.from(fileArr).map(async (file) => {
+            return new Promise((resolve) => {
+                const fileRead = new FileReader();
+                fileRead.onload = function () {
+                    resolve(fileRead.result);
+                };
+                fileRead.readAsDataURL(file);
+            });
+        }));
+
+        setPreviewImg(fileUrl);
     }
+
 
 
     const removeImage = (index) => {
@@ -85,9 +94,9 @@ const ImageUpload = ({ postImg, setPostImg, board, setBoard }) => {
     return (
         <div>
             <ImageUploadLabel htmlFor="fileInput">
-                {previewImg.length === 0 ? '이미지 업로드' : `업로드 이미지 수: ${previewImg.length}/3`}
+                {previewImg.length === 0 ? '이미지 업로드(3장까지)' : `업로드 이미지 수: ${previewImg.length}/3`}
             </ImageUploadLabel>
-            <ImageUploadInput id="fileInput" type="file" onChange={uploadFile} multiple />
+            <ImageUploadInput id="fileInput" type="file" accept="image/*" onChange={uploadFile} multiple />
             <ImagePreviewContainer>
                 {previewImg.map((url, index) => (
                     <div key={index} style={{ position: 'relative' }}>

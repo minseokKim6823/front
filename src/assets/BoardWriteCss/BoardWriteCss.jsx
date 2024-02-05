@@ -298,6 +298,7 @@ export const Registerbutton = styled.button`
   position: absolute;
   top: 22px;
   right: 406px;
+  border: none;
   border-radius: var(--br-7xs);
   background-color: var(--color-salmon);
   width: 150px;
@@ -308,13 +309,19 @@ export const Registerbutton = styled.button`
   justify-content: center;
   padding: var(--padding-sm) 0px;
   box-sizing: border-box;
+  &:hover {
+    background: green;
+    color: white;
+    transition: 0.5s;
+  }
 `;
 export const Cancelbutton = styled.button`
   position: absolute;
   top: 22px;
   right: 160px;
+  border: none;
   border-radius: var(--br-7xs);
-  background-color: var(--g-gray);
+  background-color: #6060fd;
   width: 150px;
   height: 50px;
   display: flex;
@@ -323,6 +330,11 @@ export const Cancelbutton = styled.button`
   justify-content: center;
   padding: var(--padding-sm) 0px;
   box-sizing: border-box;
+  &:hover {
+    background: green;
+    color: white;
+    transition: 0.5s;
+  }
 `;
 export const Div16 = styled.div`
   width: 716px;
@@ -340,7 +352,7 @@ export const Div17 = styled.div`
   top: 72px;
   bottom: -8px;
   left: calc(50% - 365px);
-  border-radius: 0px 0px var(--br-xl) var(--br-xl);
+  /* border-radius: 0px 0px var(--br-xl) var(--br-xl); */
   background-color: var(--color-white);
   border: 1px solid var(--color-darkgray);
   box-sizing: border-box;

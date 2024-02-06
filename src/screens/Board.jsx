@@ -359,7 +359,11 @@ const Board = ({ postImg, profileImage, nickname, title, contents, clothCategory
         <Icon src={postImg[0]} alt="이미지 로딩중"/>
         <Div1>
           <Parent>
+<<<<<<< HEAD
             <Icon1 src={profileImage} alt="이미지 로딩중" />
+=======
+            <Icon1 alt="" src="/-.svg" />
+>>>>>>> 7c59a51 (test1)
             <Wrapper>
               <Div>
                 <Text>{nickname}</Text>

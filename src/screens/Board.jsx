@@ -352,17 +352,17 @@ const DivRoot = styled.div`
   font-family: var(--font-roboto);
 `;
 
-const Board = ({ severId, title, contents, clothCategory, gender, place }) => {
+const Board = ({ postImg, profileImage, nickname, title, contents, clothCategory, gender, place }) => {
   return (
     <>
       <Div16>
-        <Icon alt="" src="/-.svg" />
+        <Icon src={postImg[0]} alt="이미지 로딩중"/>
         <Div1>
           <Parent>
-            <Icon1 alt="" src="/-.svg" />
+            <Icon1 src={profileImage} alt="이미지 로딩중" />
             <Wrapper>
               <Div>
-                <Text>{severId}</Text>
+                <Text>{nickname}</Text>
               </Div>
             </Wrapper>
           </Parent>
@@ -385,14 +385,13 @@ const Board = ({ severId, title, contents, clothCategory, gender, place }) => {
               <Text>{place}</Text>
             </Div6>
           </Frame1>
-          <IcroundArrowBackIosIcon alt="" src="/icroundarrowbackios.svg" />
-          <IcroundArrowBackIosIcon1 alt="" src="/icroundarrowbackios.svg" />
+       
         </Div7>
         <FrameDiv>
           <Div8>
-            <ContentBox>
+            <p>
               {contents}
-            </ContentBox>
+            </p>
           </Div8>
         </FrameDiv>
       </Div16>

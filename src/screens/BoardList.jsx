@@ -89,7 +89,7 @@ const BoardList = () => {
         {board.map((item) => (
           <Card key={item.boardId}>
             <Link to={`/board/${item.boardId}`}>
-              <PicIcon src={item.imageUrl} alt="이미지 로딩중" />
+              <PicIcon src={item.postImg[0]} alt="이미지 로딩중" />
               <Area>
                 <B1>{item.title}</B1>
                 <Parent>

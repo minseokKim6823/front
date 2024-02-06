@@ -62,7 +62,7 @@ const BoardUpdate = () => {
             setId(parsedData.serverId);
             setBoard(prevBoard => ({
                 ...prevBoard,
-                serverid: parsedData.serverId
+                serverId: serverId
             }));
         }
     }, []);

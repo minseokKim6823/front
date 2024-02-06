@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { IsLoggedInContext } from "../components/Login/KakaoRedirectPage";
 import { ToBoardWrite, ToBoardListButton, MyPageButton, LoginButton, NavBarContainer, HomeLogo } from "../assets/NavBarCss/NavBarCss";
 import { AuthContext, useAuth } from "../AuthContext";
-
+import logo_ex from "../img/logo_ex.png"
 const NavBar = () => {
   const { isLoggedIn, handleLoginSuccess, handleLogout } = useAuth();
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const NavBar = () => {
 
   return (
     <NavBarContainer>
-      <HomeLogo alt="" src="/.svg" onClick={() => navigate("/")} />
+      <HomeLogo alt="" src={logo_ex} onClick={() => navigate("/")} />
       <ToBoardListButton onClick={() => navigate("/board")}>빌리기</ToBoardListButton>
       <ToBoardWrite onClick={navigateToBoardWrite}>빌려주기</ToBoardWrite>
       <MyPageButton onClick={() => navigate("/profile")}>마이페이지</MyPageButton>

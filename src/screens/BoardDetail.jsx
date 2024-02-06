@@ -13,8 +13,10 @@ const BoardDetail = () => {
   const getBoard = async () => {
     try {
       const resp = await (await axios.get(`//localhost:8080/board/${boardId}`)).data;
+      console.log(resp);
       setBoard(resp);
     } catch (e) {
+
       console.log(e);
       throw (e);
     }
@@ -22,14 +24,18 @@ const BoardDetail = () => {
   };
 
   useEffect(() => {
+    console.log(3);
     getBoard();
   }, []);
 
   return (
     <>
       <Board
+        postImg={board.postImg}
         severId={board.severId}
         boardId={board.boardId}
+        profileImage={board.profileImage}
+        nickname={board.nickname}
         title={board.title}
         contents={board.contents}
         clothCategory={board.clothCategory}

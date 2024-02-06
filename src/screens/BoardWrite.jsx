@@ -15,7 +15,7 @@ const BoardWrite = () => {
   const [price, setPrice] = useState(0);
   const [postImg, setPostImg] = useState([]);
   const [board, setBoard] = useState({
-    serverid: '-1',
+    serverId: '-1',
     title: '',
     contents: '',
     price: 0,
@@ -37,7 +37,7 @@ const BoardWrite = () => {
       setId(parsedData.serverId);
       setBoard(prevBoard => ({
         ...prevBoard,
-        serverid: parsedData.serverId
+        serverId: parsedData.serverId
       }));
     }
   }, []);
@@ -65,7 +65,7 @@ const BoardWrite = () => {
       postImg: UploadedImageURLs, // Assuming 'postImg' is the field to store image URLs in your board
     };
     console.log(UploadedImageURLs);
-    await axios.post(`//localhost:8080/board/write`, board).then((res) => {
+    await axios.post(`//localhost:8080/board/write`, updatedBoard).then((res) => {
       alert('등록되었습니다.');
       navigate('/board');
     });

@@ -6,17 +6,16 @@ import axios from "axios";
 const MyPage = () => {
   const Navigate = useNavigate();
   const [nickname, setNickname] = useState('');
-  const [serverId, setId] = useState(-1);
-  const [board, setBoard] = useState();
+  const [profileImage, setProfileImage] = useState('');
+  const [board, setBoard] = useState([]);
   const [user, setUser] = useState({
     severId: -1,
   });
-  const navigateToUpdate = () => {
-    Navigate('/update/:boardId')
+
+  const navigateToUpdate = (boardId) => {
+    Navigate('/update/' + boardId);
   }
-  const navigateToDelete = () => {
-    Navigate('/update/:boardId')
-  }
+
   const navigateToLogin = () => {
     Navigate('/login');
   }
@@ -41,8 +40,8 @@ const MyPage = () => {
       // memberInfo 있으면 파싱하여 상태 업데이트
       const parsedData = JSON.parse(memberInfo);
       //   console(parsedData);
-      setNickname(memberInfo.nickname);
-      setId(parsedData.serverId);
+      setNickname(parsedData.nickname);
+      setProfileImage(parsedData.profileImage);
       setUser(prevUser => ({
         ...prevUser,
         serverId: parsedData.serverId
@@ -54,11 +53,11 @@ const MyPage = () => {
         console.log('보드 가져오기 성공');
       }
     }
-    // else {
-    //   alert("로그인 해야합니다.");
-    //   navigateToLogin();
-    // }
-  }, [board]);
+    else {
+      alert("로그인 해야합니다.");
+      navigateToLogin();
+    }
+  }, []);
 
   // 삭제 로직
   const handleDelete = async (boardId) => {
@@ -78,10 +77,10 @@ const MyPage = () => {
     <>
       <Div13>
         <Div5>
-          <Icon1 alt="" src="/.svg" />
+          <Icon1 alt="이미지로딩중" src={profileImage} />
           <Wrapper3>
             <Div4>
-              <Text1>유저명</Text1>
+              <Text1>{`${nickname}`}</Text1>
             </Div4>
           </Wrapper3>
         </Div5>
@@ -90,26 +89,26 @@ const MyPage = () => {
             <Text1>판매중인 상품</Text1>
           </Div6>
         </Wrapper4>
-        {board.map((item) => (
+        {board && board.map((item) => (
           <Card key={item.boardId}>
-            <Link to={`/board/${item.boardId}`}>
-              <PicIcon src={item.imageUrl} alt="이미지 로딩중" />
-              <Area>
-                <B1>{item.title}</B1>
-                <Parent1>
-                  <Div7>{item.gender}</Div7>
-                  <Div8>{`>`}</Div8>
-                  <Div9>{item.clothCategory}</Div9>
-                </Parent1>
-                <Div11>
-                  <Text3>{`${item.price}원`}</Text3>
-                </Div11>
-              </Area>
-              <ButtonArea>
-                <UpdateButton onClick={navigateToUpdate}>수정하기</UpdateButton>
-                <DeleteButton onClick={navigateToDelete}>삭제하기</DeleteButton>
-              </ButtonArea>
-            </Link>
+            {/* <Link to={`/board/${item.boardId}`}> */}
+            <PicIcon src={item.postImg[0]} alt="이미지 로딩중" />
+            <Area>
+              <B1>{item.title}</B1>
+              <Parent1>
+                <Div7>{item.gender}</Div7>
+                <Div8>{`>`}</Div8>
+                <Div9>{item.clothCategory}</Div9>
+              </Parent1>
+              <Div11>
+                <Text3>{`${item.price}원`}</Text3>
+              </Div11>
+            </Area>
+            <ButtonArea>
+              <UpdateButton onClick={() => navigateToUpdate(item.boardId)}>수정하기</UpdateButton>
+              <DeleteButton onClick={() => handleDelete(item.boardId)}>삭제하기</DeleteButton>
+            </ButtonArea>
+            {/* </Link> */}
           </Card>
         ))}
       </Div13>

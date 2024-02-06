@@ -93,4 +93,9 @@ export const LoginButton = styled.button`
   box-sizing: border-box;
   font-size: var(--font-size-mid);
   background-color: #1e90ff	;
+  &:hover {
+    background: cornflowerblue;
+    color: white;
+    transition: 0.5s;
+  }
 `;

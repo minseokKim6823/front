@@ -6,6 +6,7 @@ import GenderBoardList from "../components/BoardList/GenderBoardList";
 import GenderDropdownSearch from "../components/BoardList/GenderBoardList";
 import ClothingDropdown from "../components/BoardWrite/ClothingDropdown";
 import ClothingDropdownSearch from "../components/BoardList/ClothingDropdownSearch";
+import { Link } from 'react-router-dom';
 
 const BoardList = () => {
   const searchTitleRef = useRef();
@@ -13,14 +14,11 @@ const BoardList = () => {
   const navigate = useNavigate();
   const [board, setBoard] = useState([]);
   const [search, setSearch] = useState({
-    place: '',
     title: '',
     gender: '',
     clothCategory: '',
   })
-  const navigateToDetail = () => {
-    navigate(`/board/${board.idx}`);
-  };
+
   const { place, title, clothCategory, gender } = search;
   // 타이틀, 본문 보드에 반영
   const onChange = (event) => {
@@ -33,10 +31,10 @@ const BoardList = () => {
   };
   // 검색
   const searchBoard = async () => {
-    const { place, title, gender, clothCategory } = search;
+    const { title, gender, clothCategory } = search;
     try {
       const response = await axios.get(`//localhost:8080/board/search?query`, {
-        params: { place, title, gender, clothCategory },
+        params: { title, gender, clothCategory },
       });
       setBoard(response.data);
     } catch (error) {
@@ -89,19 +87,21 @@ const BoardList = () => {
         </Div11>
         {/* 상품 보여주는 부분 */}
         {board.map((item) => (
-          <Card key={item.idx} onChange={navigateToDetail}>
-            <PicIcon src={item.imageUrl} alt="이미지 로딩중" />
-            <Area>
-              <B1>{item.title}</B1>
-              <Parent>
-                <Div12>{item.gender}</Div12>
-                <Div13>{`>`}</Div13>
-                <Div14>{item.clothCategory}</Div14>
-              </Parent>
-              <Div16>
-                <Text3>{`${item.price}원`}</Text3>
-              </Div16>
-            </Area>
+          <Card key={item.boardId}>
+            <Link to={`/board/${item.boardId}`}>
+              <PicIcon src={item.imageUrl} alt="이미지 로딩중" />
+              <Area>
+                <B1>{item.title}</B1>
+                <Parent>
+                  <Div12>{item.gender}</Div12>
+                  <Div13>{`>`}</Div13>
+                  <Div14>{item.clothCategory}</Div14>
+                </Parent>
+                <Div16>
+                  <Text3>{`${item.price}원`}</Text3>
+                </Div16>
+              </Area>
+            </Link>
           </Card>
         ))}
       </Div18>

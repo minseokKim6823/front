@@ -2,7 +2,7 @@ import GenderDropdown from "../components/BoardWrite/GenderDropdown";
 import ClothingDropdown from "../components/BoardWrite/ClothingDropdown";
 import { Div, Div1, Div12, Div14, Div15, Div16, Div17, Div3, Div4, Div6, Div7, Div8, Div9, DivRoot, Text1, Wrapper, Text, B, Div13, TitleInput, ContentTextarea, Cancelbutton, Registerbutton } from "../assets/BoardWriteCss/BoardWriteCss";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PriceFormat from "../components/BoardWrite/PriceFormat";
 import axios from "axios";
 import ImageUpload from "../components/BoardWrite/ImageUpload";
@@ -10,10 +10,12 @@ import AWS from 'aws-sdk';
 
 const BoardWrite = () => {
   const navigate = useNavigate();
-
+  const [nickname, setNickname] = useState('');
+  const [serverid, setId] = useState(-1);
   const [price, setPrice] = useState(0);
   const [postImg, setPostImg] = useState([]);
   const [board, setBoard] = useState({
+    serverid: '-1',
     title: '',
     contents: '',
     price: 0,
@@ -22,6 +24,22 @@ const BoardWrite = () => {
     place: '',
     currentTime: new Date(),
     postImg: '',
+  });
+
+  // 로컬스토리지에서 유저 정보 가져오기
+  useEffect(() => {
+    const memberInfo = localStorage.getItem('memberdata');
+    if (memberInfo) {
+      // memberInfo 있으면 파싱하여 상태 업데이트
+      const parsedData = JSON.parse(memberInfo);
+      //   console(parsedData);
+      setNickname(memberInfo.nickname);
+      setId(parsedData.serverId);
+      setBoard(prevBoard => ({
+        ...prevBoard,
+        serverid: parsedData.serverId
+      }));
+    }
   });
 
   // 비구조화 할당
@@ -47,7 +65,7 @@ const BoardWrite = () => {
       postImg: UploadedImageURLs, // Assuming 'postImg' is the field to store image URLs in your board
     };
     console.log(UploadedImageURLs);
-    await axios.post(`//localhost:8080/board/save`, board).then((res) => {
+    await axios.post(`//localhost:8080/board/write`, board).then((res) => {
       alert('등록되었습니다.');
       navigate('/board');
     });

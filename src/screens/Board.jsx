@@ -359,7 +359,7 @@ const Board = ({ severId, title, contents, clothCategory, gender, place }) => {
         <Icon alt="" src="/-.svg" />
         <Div1>
           <Parent>
-            <Icon1 alt="" src="/.svg" />
+            <Icon1 alt="" src="/-.svg" />
             <Wrapper>
               <Div>
                 <Text>{severId}</Text>

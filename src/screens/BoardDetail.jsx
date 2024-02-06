@@ -13,7 +13,7 @@ const BoardDetail = () => {
   const getBoard = async () => {
     try {
       const resp = await (await axios.get(`//localhost:8080/board/${boardId}`)).data;
-      setBoard(resp.data);
+      setBoard(resp);
     } catch (e) {
       console.log(e);
       throw (e);
@@ -28,7 +28,7 @@ const BoardDetail = () => {
   return (
     <>
       <Board
-        postImg={board.postImg}
+        severId={board.severId}
         boardId={board.boardId}
         title={board.title}
         contents={board.contents}

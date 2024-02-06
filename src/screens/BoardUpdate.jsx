@@ -28,7 +28,7 @@ import { B } from '../assets/BoardListCss/BoardlistCss';
 
 const BoardUpdate = () => {
     const navigate = useNavigate();
-    const { idx } = useParams();
+    const { boardId } = useParams();
     const [price, setPrice] = useState(0);
     const [postImg, setPostImg] = useState([]);
     const [board, setBoard] = useState({
@@ -53,7 +53,7 @@ const BoardUpdate = () => {
     };
 
     const getBoard = async () => {
-        const resp = await axios.get(`//localhost:8080/board/${idx}`);
+        const resp = await axios.get(`//localhost:8080/board/${boardId}`);
         setBoard(resp.data);
     };
 
@@ -65,9 +65,9 @@ const BoardUpdate = () => {
             postImg: UploadedImageURLs,
         };
 
-        await axios.patch(`//localhost:8080/board/${idx}`, updatedBoard).then((res) => {
+        await axios.patch(`//localhost:8080/update`, updatedBoard).then((res) => {
             alert('수정되었습니다.');
-            navigate('/board/' + idx);
+            navigate('/board/' + boardId);
         });
     };
 

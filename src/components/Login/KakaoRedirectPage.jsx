@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { json, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const KakaoRedirectPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // Add state for login status
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleOAuthKakao = async (code) => {
         try {

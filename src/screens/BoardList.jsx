@@ -77,10 +77,10 @@ const BoardList = () => {
           <Div7>
             <Text2>키워드 및 카테고리</Text2>
           </Div7>
-          <SearchTitle placeholder="제목을 입력하세요"
+          <SearchTitle placeholder="제목을 입력하세요" ref={searchTitleRef}
             type="text" name="title" value={title} onChange={onChange} />
-          <GenderDropdownSearch name='gender' search={search} setSearch={setSearch} />
-          <ClothingDropdownSearch name='clothCategory' search={search} setSearch={setSearch} />
+          <GenderDropdownSearch name='gender' search={search} setSearch={setSearch} ref={genderDropdownRef} />
+          <ClothingDropdownSearch name='clothCategory' search={search} setSearch={setSearch} ref={genderDropdownRef} />
           <SearchButton onClick={searchBoard}>
             검색
           </SearchButton>

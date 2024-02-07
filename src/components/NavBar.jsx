@@ -1,44 +1,40 @@
 import { ToBoardWrite, LoginButton, MyPageButton, ToBoardListButton, NavBarContainer, HomeLogo } from "../assets/NavBarCss/NavBarCss";
 import { useNavigate } from "react-router-dom";
-import '../Buttonstyle.css';
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from 'react-redux';
-
-import { logoutSuccess } from '../components/Login/LoginSlice'; // Import logout action
-
+import { useContext, useState } from "react"; // useEffect, useState 삭제
+import { IsLoggedIn } from '../components/Login/KakaoRedirectPage';
 
 const NavBar = () => {
-  const isLoggedIn = useSelector(state => state.login.isLoggedIn);
-  const dispatch = useDispatch();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    // Dispatch the logout action
-    dispatch(logoutSuccess());
-    // Navigate to the desired route after logout
-    navigate('/');
-  };
+  const navigateToBoardWrite = () => {
+    navigate("/write");
+  }
 
   const navigateToBoardList = () => {
     navigate("/board");
   };
+
   const navigateToMyPage = () => {
     navigate("/page/:idx");
   };
+
   const navigateToLogin = () => {
     navigate("/login");
   }
+
   const navigateToHome = () => {
     navigate('/');
   }
-  // 만약 로그인이 되어있지 않은 상태라면, '/login'으로 이동하는 함수
-  const navigateToBoardWrite = () => {
-    if (!isLoggedIn) {
-      navigate("/login");
-    } else {
-      navigate("/write");
-    }
+
+  // 로그아웃 처리 함수
+  const handleLogout = () => {
+    // 로컬스토리지에서 사용자 데이터 삭제
+    localStorage.removeItem('memberData');
+    // isLoggedIn 상태 업데이트
+    setIsLoggedIn(false);
   };
+
   return (
     <>
       <NavBarContainer>
@@ -59,9 +55,15 @@ const NavBar = () => {
           마이페이지
         </MyPageButton>
         {/* 로그인 안하면 로그인, 하면 로그아웃 구현 */}
-        <LoginButton onClick={isLoggedIn ? handleLogout : navigateToLogin}>
-          {isLoggedIn ? '로그아웃' : '로그인'}
-        </LoginButton>
+        {isLoggedIn ? ( // isLoggedIn 값에 따라 로그인 또는 로그아웃 버튼 렌더링
+          <LoginButton onClick={handleLogout}>
+            로그아웃
+          </LoginButton>
+        ) : (
+          <LoginButton onClick={navigateToLogin}>
+            로그인
+          </LoginButton>
+        )}
       </NavBarContainer>
     </>
   );

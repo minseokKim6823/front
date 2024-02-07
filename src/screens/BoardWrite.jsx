@@ -11,7 +11,7 @@ import AWS from 'aws-sdk';
 const BoardWrite = () => {
   const navigate = useNavigate();
   const [nickname, setNickname] = useState('');
-  const [serverid, setId] = useState(-1);
+  const [serverId, setId] = useState(-1);
   const [price, setPrice] = useState(0);
   const [postImg, setPostImg] = useState([]);
   const [board, setBoard] = useState({
@@ -40,7 +40,7 @@ const BoardWrite = () => {
         serverid: parsedData.serverId
       }));
     }
-  });
+  }, []);
 
   // 비구조화 할당
   const { title, contents, place } = board;

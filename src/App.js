@@ -1,5 +1,5 @@
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import GlobalHome from './assets/HomeCss/GlobalHome';
 import GlobalBoardWrite from './assets/BoardWriteCss/GlobalBoardWrite';
 import GlobalLoginPage from './assets/LoignPageCss/GlobalLoginPage';
@@ -12,29 +12,28 @@ import BoardWrite from './screens/BoardWrite';
 import LoginPage from './screens/LoginPage';
 import KakaoRedirectPage from './components/Login/KakaoRedirectPage';
 import Chating from './screens/Chating';
-import { DivRoot } from './assets/HomeCss/HomeCss'
-
-
-
+import { DivRoot } from './assets/HomeCss/HomeCss';
+import { IsLoggedIn } from './components/Login/KakaoRedirectPage';
 
 function App() {
-  // 렌더링된 컴포넌트에 따라 다른 글로벌 스타일을 적용
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // Determine the global component based on the current path
   let globalComponent;
   switch (window.location.pathname) {
     case '/':
       globalComponent = <GlobalHome />;
       break;
     case '/write':
-      globalComponent = <GlobalBoardWrite />;
-      break;
     case '/board':
       globalComponent = <GlobalBoardWrite />;
       break;
     case '/login':
       globalComponent = <GlobalLoginPage />;
+      break;
     default:
       globalComponent = <GlobalHome />;
   }
+
   return (
     <Router>
       <DivRoot>

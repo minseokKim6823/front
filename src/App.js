@@ -9,11 +9,14 @@ import BoardList from './screens/BoardList';
 import BoardDetail from './screens/BoardDetail';
 import BoardUpdate from './screens/BoardUpdate';
 import BoardWrite from './screens/BoardWrite';
+import BoardDelete from './screens/BoardDelete';
 import LoginPage from './screens/LoginPage';
+import MyPage from './screens/MyPage';
 import KakaoRedirectPage from './components/Login/KakaoRedirectPage';
 import Chating from './screens/Chating';
 import { DivRoot } from './assets/HomeCss/HomeCss';
 import { IsLoggedIn } from './components/Login/KakaoRedirectPage';
+import GlobalMyPage from './assets/MyPageCss/GlobalMyPage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,6 +33,8 @@ function App() {
     case '/login':
       globalComponent = <GlobalLoginPage />;
       break;
+    case '/profile':
+      globalComponent = <GlobalMyPage />;
     default:
       globalComponent = <GlobalHome />;
   }
@@ -41,6 +46,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<MyPage />} />
           <Route path="/board" element={<BoardList />} />
           <Route path="/board/:boardId" element={<BoardDetail />} />
           <Route path="/write" element={<BoardWrite />} />
@@ -48,6 +54,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/oauth/redirected/kakao" element={<KakaoRedirectPage />} />
           <Route path='/chat' element={<Chating />} />
+          <Route path='/delete' element={<BoardDelete />} />
         </Routes>
       </DivRoot>
     </Router>

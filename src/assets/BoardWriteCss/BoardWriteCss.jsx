@@ -84,17 +84,17 @@ export const Wrapper = styled.div`
 export const Div3 = styled.div`
   position: absolute;
   top: 52px;
-  left: calc(50% - 344px);
-  border-radius: var(--br-5xs);
-  background-color: var(--color-whitesmoke-100);
-  border: 1px solid var(--color-whitesmoke-200);
+  left: 10px;
+  border-radius: none;
+  background-color: white;
+  border:none;
   box-sizing: border-box;
   width: 538px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: var(--padding-xs) var(--padding-base);
+  padding: none;
   z-index: 1;
 `;
 
@@ -107,6 +107,8 @@ export const TitleInput = styled.input`
   height: 35px;
   text-size-adjust: 25px;
   font-size: 20px;
+  border: 2px solid black;
+  border-radius: 3px;
 `;
 
 export const Div4 = styled.div`
@@ -300,7 +302,7 @@ export const Registerbutton = styled.button`
   right: 406px;
   border: none;
   border-radius: var(--br-7xs);
-  background-color: var(--color-salmon);
+  background-color: #d62727;
   width: 150px;
   height: 50px;
   display: flex;

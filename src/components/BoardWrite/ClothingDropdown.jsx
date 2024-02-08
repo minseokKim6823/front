@@ -2,10 +2,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
 const ClothingDropdownWrapper = styled.div`
-  position: absolute;
-  top: 110px;
+  position: relative;
+  margin: none;
+  top: 47%;
   height: 35px;
-  left: calc(50% - 96px);
+  left: 40%;
   background-color: #e0e0e0;
   border: 1px solid var(--color-whitesmoke-200);
   border: none;
@@ -15,18 +16,18 @@ const ClothingDropdownWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: var(--padding-xs) var(--padding-3xs);
-  gap: var(--gap-mini);
+  padding: none;
+  gap: none;
   z-index: 2;
 `;
 
 const DropdownToggle = styled.div`
-  padding-left: 0px;
-  padding-right: 10px;
-  padding-bottom: 10px;
-  padding-top: 0px;
+  position: absolute;
+  padding: none;
   width: 200px;
-  height: 110%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
   text-align: center;
   background-color: #e0e0e0;
   cursor: pointer;

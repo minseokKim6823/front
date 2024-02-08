@@ -10,23 +10,18 @@ const NavBar = () => {
   const navigateToBoardWrite = () => {
     navigate("/write");
   }
-
   const navigateToBoardList = () => {
     navigate("/board");
   };
-
   const navigateToMyPage = () => {
-    navigate("/page/:idx");
+    navigate("/profile");
   };
-
   const navigateToLogin = () => {
     navigate("/login");
   }
-
   const navigateToHome = () => {
     navigate('/');
   }
-
   // 로그아웃 처리 함수
   const handleLogout = () => {
     // 로컬스토리지에서 사용자 데이터 삭제

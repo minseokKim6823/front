@@ -77,6 +77,11 @@ export const MyPageButton = styled.button`
   box-sizing: border-box;
   font-size: var(--font-size-mid);
   border: none;
+  &:hover {
+    background: #cb0000;
+    color: white;
+    transition: 0.5s;
+  }
 `;
 export const LoginButton = styled.button`
   border: none;

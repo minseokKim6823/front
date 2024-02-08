@@ -123,11 +123,11 @@ const BoardWrite = () => {
           </Div4>
           {/* 제목 입력부분 */}
           <Div3>
-            <Wrapper>
-              <TitleInput placeholder="제목을 입력해주세요"
-                type="text" name="title" value={title} onChange={onChange}
-              />
-            </Wrapper>
+            {/* <Wrapper> */}
+            <TitleInput placeholder="제목을 입력해주세요"
+              type="text" name="title" value={title} onChange={onChange}
+            />
+            {/* </Wrapper> */}
           </Div3>
           {/* 성별 드롭다운 */}
           <GenderDropdown name='gender' board={board} setBoard={setBoard} />

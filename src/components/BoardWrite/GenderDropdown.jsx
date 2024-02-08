@@ -2,33 +2,36 @@ import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
 const GenderDropdownWrapper = styled.div`
-  position: absolute;
+  position: relative;
   top: 110px;
   height: 35px;
   left: calc(50% - 344px);
   background-color: #e0e0e0;
-  border: 1px solid var(--color-whitesmoke-200);
   border: none;
   box-sizing: border-box;
   width: 234px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  padding: var(--padding-xs) var(--padding-3xs);
-  gap: var(--gap-mini);
+  text-align: center;
+  /* padding: var(--padding-xs) var(--padding-3xs); */
+  padding: none;
   z-index: 2;
+  font-size: 20px;
+  justify-content: center;
 `;
 
 const DropdownToggle = styled.div`
-  padding-left: 0px;
-  padding-right: 10px;
-  padding-bottom: 10px;
-  padding-top: 0px;
-  width: 200px;
+  position: absolute;
+  padding: none;
+  top: 0%;
+  left: 0px;
+  width: 234px;
   height: 110%;
   text-align: center;
-  background-color: #e0e0e0;
+  background-color: none;
+  justify-content: center;
+  display: flex;
   cursor: pointer;
 `;
 

@@ -4,8 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export const IsLoggedInContext = React.createContext();
-
 const KakaoRedirectPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
@@ -35,11 +33,11 @@ const KakaoRedirectPage = () => {
     }, [location]);
 
     return (
-        <IsLoggedInContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+        <>
             <div>
                 <div>Processing...</div>
             </div>
-        </IsLoggedInContext.Provider>
+        </>
     );
 };
 

@@ -84,7 +84,7 @@ export const Wrapper = styled.div`
 export const Div3 = styled.div`
   position: absolute;
   top: 52px;
-  left: 10px;
+  left: 13px;
   border-radius: none;
   background-color: white;
   border:none;

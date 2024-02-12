@@ -17,6 +17,7 @@ import Chating from './screens/Chating';
 import { DivRoot } from './assets/HomeCss/HomeCss';
 import { IsLoggedIn } from './components/Login/KakaoRedirectPage';
 import GlobalMyPage from './assets/MyPageCss/GlobalMyPage';
+import GlobalChating from './assets/ChatingCss/\bGlobalChating';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -35,6 +36,8 @@ function App() {
       break;
     case '/profile':
       globalComponent = <GlobalMyPage />;
+    case '/chat':
+      globalComponent = <GlobalChating />;
     default:
       globalComponent = <GlobalHome />;
   }

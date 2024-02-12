@@ -90,7 +90,7 @@ const BoardUpdate = () => {
             postImg: UploadedImageURLs,
         };
 
-        await axios.patch(`//localhost:8080/update`, updatedBoard).then((res) => {
+        await axios.post(`//localhost:8080/board/update`, updatedBoard).then((res) => {
             alert('수정되었습니다.');
             navigate('/board/' + boardId);
         });

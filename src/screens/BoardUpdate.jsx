@@ -92,7 +92,7 @@ const BoardUpdate = () => {
 
         await axios.post(`//localhost:8080/board/update`, updatedBoard).then((res) => {
             alert('수정되었습니다.');
-            navigate('/board/' + boardId);
+            navigate('/profile');
         });
     };
 

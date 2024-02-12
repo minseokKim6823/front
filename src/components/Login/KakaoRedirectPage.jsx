@@ -3,21 +3,20 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
-const AuthContext = React.createContext();
+import { useAuth } from '../../AuthContext';
 
 const KakaoRedirectPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+    const { handleLoginSuccess } = useAuth();
     const handleOAuthKakao = async (code) => {
         try {
             const response = await axios.get(`http://localhost:8080/oauth/login/kakao?code=${code}`);
             const data = response.data;
             alert("로그인 성공: ");
             localStorage.setItem('memberdata', JSON.stringify(data));
-            setIsLoggedIn(true);
+            handleLoginSuccess();
             navigate(`/`);
         } catch (error) {
             alert("로그인에 실패하셨습니다.");

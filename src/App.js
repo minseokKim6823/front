@@ -15,12 +15,11 @@ import MyPage from './screens/MyPage';
 import KakaoRedirectPage from './components/Login/KakaoRedirectPage';
 import Chating from './screens/Chating';
 import { DivRoot } from './assets/HomeCss/HomeCss';
-import { IsLoggedIn } from './components/Login/KakaoRedirectPage';
 import GlobalMyPage from './assets/MyPageCss/GlobalMyPage';
-import GlobalChating from './assets/ChatingCss/\bGlobalChating';
+import GlobalChating from './assets/ChatingCss/GlobalChating';
+import { AuthProvider } from './AuthContext';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   // Determine the global component based on the current path
   let globalComponent;
   switch (window.location.pathname) {
@@ -43,11 +42,11 @@ function App() {
   }
 
   return (
-    <Router>
-      <DivRoot>
-        {globalComponent}
-        <NavBar />
-        <AuthProvider>
+    <AuthProvider>
+      <Router>
+        <DivRoot>
+          {globalComponent}
+          <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<MyPage />} />
@@ -60,9 +59,9 @@ function App() {
             <Route path='/chat' element={<Chating />} />
             <Route path='/delete' element={<BoardDelete />} />
           </Routes>
-        </AuthProvider>
-      </DivRoot>
-    </Router>
+        </DivRoot>
+      </Router>
+    </AuthProvider>
   );
 }
 

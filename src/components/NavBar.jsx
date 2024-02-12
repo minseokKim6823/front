@@ -5,9 +5,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { IsLoggedInContext } from "../components/Login/KakaoRedirectPage";
 import { ToBoardWrite, ToBoardListButton, MyPageButton, LoginButton, NavBarContainer, HomeLogo } from "../assets/NavBarCss/NavBarCss";
 
-const NavBar = ({ isLoggedIn, setIsLoggedIn }) => {
+const NavBar = () => {
+  // context Api로 로그인 상태 가져오기
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
-
   const navigateToBoardWrite = () => {
     if (isLoggedIn) {
       navigate("/write");

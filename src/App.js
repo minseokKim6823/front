@@ -47,18 +47,20 @@ function App() {
       <DivRoot>
         {globalComponent}
         <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<MyPage />} />
-          <Route path="/board" element={<BoardList />} />
-          <Route path="/board/:boardId" element={<BoardDetail />} />
-          <Route path="/write" element={<BoardWrite />} />
-          <Route path="/update/:boardId" element={<BoardUpdate />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/oauth/redirected/kakao" element={<KakaoRedirectPage />} />
-          <Route path='/chat' element={<Chating />} />
-          <Route path='/delete' element={<BoardDelete />} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<MyPage />} />
+            <Route path="/board" element={<BoardList />} />
+            <Route path="/board/:boardId" element={<BoardDetail />} />
+            <Route path="/write" element={<BoardWrite />} />
+            <Route path="/update/:boardId" element={<BoardUpdate />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/oauth/redirected/kakao" element={<KakaoRedirectPage />} />
+            <Route path='/chat' element={<Chating />} />
+            <Route path='/delete' element={<BoardDelete />} />
+          </Routes>
+        </AuthProvider>
       </DivRoot>
     </Router>
   );

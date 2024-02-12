@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const AuthContext = React.createContext();
+
 const KakaoRedirectPage = () => {
     const location = useLocation();
     const navigate = useNavigate();

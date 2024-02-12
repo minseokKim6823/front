@@ -1,6 +1,7 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Div3, Icon, Div, Text1, Container, Div1, Text2, Frame1, FrameDiv, B, Wrapper1, Inner, Wrapper2, Div2, Div13, Wrapper, Div5, Wrapper3, Wrapper4, Icon1, Div4, Div6, Div12, Card, PicIcon, Area, B1, Parent1, Div7, Div8, Div9, Div10, Div11, Text3, Card1, Card2, ButtonArea, UpdateButton, DeleteButton } from "../assets/MyPageCss/MyPageCss";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const MyPage = () => {
   const Navigate = useNavigate();

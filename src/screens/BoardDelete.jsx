@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ProductDelete = () => {
+const BoardDelete = () => {
     return (
-        <div>ProductDelete</div>
+        <div>BoardDelete</div>
     )
 }
 
-export default ProductDelete
+export default BoardDelete

@@ -20,12 +20,7 @@ const MyPage = () => {
   const navigateToLogin = () => {
     Navigate('/login');
   }
-  // 서버에 유저명 전달
-  // const userPassToBack = async () => {
-  //   await axios.post(`//localhost:8080/board/write`, user).then((res) => {
-  //     alert('등록되었습니다.');
-  //   });
-  // };
+
   // 서버에서 유저에 맞는 보드 가져오기
   const searchBoard = async () => {
     const { severId } = user;
@@ -38,7 +33,7 @@ const MyPage = () => {
       console.error("데이터를 불러오는 중 오류 발생:", error);
     }
   };
-  // severid 보내기
+
   // 로컬스토리지에서 유저 정보 가져오기
   useEffect(() => {
     const memberInfo = localStorage.getItem('memberdata');
@@ -63,8 +58,21 @@ const MyPage = () => {
     //   alert("로그인 해야합니다.");
     //   navigateToLogin();
     // }
-  }, []);
-  // board 불러오기
+  }, [board]);
+
+  // 삭제 로직
+  const handleDelete = async (boardId) => {
+    try {
+      const response = await axios.delete(`//localhost:8080/board/delete/${boardId}`);
+      if (response.status === 200) {
+        window.confirm("삭제하시겠습니까?");
+        // 삭제 성공 시, 해당 게시물을 화면에서도 삭제하도록 업데이트
+        setBoard(prevBoard => prevBoard.filter(item => item.boardId !== boardId));
+      }
+    } catch (error) {
+      console.error("게시물 삭제 중 오류 발생:", error);
+    }
+  };
 
   return (
     <>

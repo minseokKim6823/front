@@ -11,19 +11,11 @@ import AWS from 'aws-sdk';
 const BoardWrite = () => {
   const navigate = useNavigate();
   const [nickname, setNickname] = useState('');
-<<<<<<< HEAD
   const [serverId, setId] = useState(-1);
   const [price, setPrice] = useState(0);
   const [postImg, setPostImg] = useState([]);
   const [board, setBoard] = useState({
     serverId: '-1',
-=======
-  const [serverid, setId] = useState(-1);
-  const [price, setPrice] = useState(0);
-  const [postImg, setPostImg] = useState([]);
-  const [board, setBoard] = useState({
-    serverId : '-1',
->>>>>>> 7c59a51 (test1)
     title: '',
     contents: '',
     price: 0,
@@ -45,11 +37,7 @@ const BoardWrite = () => {
       setId(parsedData.serverId);
       setBoard(prevBoard => ({
         ...prevBoard,
-<<<<<<< HEAD
         serverId: parsedData.serverId
-=======
-        serverId: serverid
->>>>>>> 7c59a51 (test1)
       }));
     }
   }, []);
@@ -76,11 +64,7 @@ const BoardWrite = () => {
       postImg: UploadedImageURLs, // Assuming 'postImg' is the field to store image URLs in your board
     };
     console.log(UploadedImageURLs);
-<<<<<<< HEAD
     await axios.post(`//localhost:8080/board/write`, updatedBoard).then((res) => {
-=======
-    await axios.post(`//localhost:8080/board/write`, board).then((res) => {
->>>>>>> 7c59a51 (test1)
       alert('등록되었습니다.');
       navigate('/board');
     });

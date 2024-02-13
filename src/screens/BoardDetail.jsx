@@ -13,10 +13,6 @@ const BoardDetail = () => {
   const getBoard = async () => {
     try {
       const resp = await (await axios.get(`//localhost:8080/board/${boardId}`)).data;
-<<<<<<< HEAD
-      console.log(resp);
-=======
->>>>>>> 7c59a51 (test1)
       setBoard(resp);
     } catch (e) {
 
@@ -27,21 +23,13 @@ const BoardDetail = () => {
   };
 
   useEffect(() => {
-<<<<<<< HEAD
-    console.log(3);
-=======
-    console.log(boardId);
->>>>>>> 7c59a51 (test1)
     getBoard();
   }, []);
 
   return (
     <>
       <Board
-<<<<<<< HEAD
         postImg={board.postImg}
-=======
->>>>>>> 7c59a51 (test1)
         severId={board.severId}
         boardId={board.boardId}
         profileImage={board.profileImage}

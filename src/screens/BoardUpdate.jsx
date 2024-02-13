@@ -35,11 +35,8 @@ import { B } from '../assets/BoardListCss/BoardlistCss';
 const BoardUpdate = () => {
     const navigate = useNavigate();
     const { boardId } = useParams();
-<<<<<<< HEAD
     const [nickname, setNickname] = useState('');
     const [serverId, setId] = useState(-1);
-=======
->>>>>>> 7c59a51 (test1)
     const [price, setPrice] = useState(0);
     const [postImg, setPostImg] = useState([]);
     const [board, setBoard] = useState({
@@ -95,11 +92,7 @@ const BoardUpdate = () => {
 
         await axios.post(`//localhost:8080/board/update`, updatedBoard).then((res) => {
             alert('수정되었습니다.');
-<<<<<<< HEAD
             navigate('/profile');
-=======
-            navigate('/board/' + boardId);
->>>>>>> 7c59a51 (test1)
         });
     };
 
@@ -155,17 +148,8 @@ const BoardUpdate = () => {
                     {/* 제목 입력부분 */}
                     <Div3>
                         <Wrapper>
-<<<<<<< HEAD
                             <TitleInput placeholder="제목을 입력해주세요"
                                 type="text" name="title" value={title} onChange={onChange}
-=======
-                            <TitleInput
-                                placeholder='제목을 입력해주세요'
-                                type='text'
-                                name='title'
-                                value={board}
-                                onChange={onChange}
->>>>>>> 7c59a51 (test1)
                             />
                         </Wrapper>
                     </Div3>

@@ -1,5 +1,5 @@
 import { Area, B, B1, Card, Div, Div1, Div2, Div3, Div4, Div5, Div6, Div7, Div8, DivRoot, Icon, IcroundArrowBackIos, IcroundArrowBackIos1, Parent, PicIcon, Text, VectorIcon, VectorIcon1 } from '../assets/HomeCss/HomeCss';
-import MapComponent from '../test/MapComponent';
+import MapComponent from '../components/BoardWrite/MapComponent';
 
 const Home = () => {
     return (

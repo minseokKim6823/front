@@ -8,7 +8,7 @@ import PriceFormat from "../components/BoardWrite/PriceFormat";
 import axios from "axios";
 import ImageUpload from "../components/BoardWrite/ImageUpload";
 import AWS from 'aws-sdk';
-import MapComponent from "../test/MapComponent";
+import MapComponent from "../components/BoardWrite/MapComponent";
 
 const BoardWrite = () => {
   const navigate = useNavigate();

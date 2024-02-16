@@ -10,18 +10,20 @@ const NavBar = () => {
   const { isLoggedIn, handleLoginSuccess, handleLogout } = useAuth();
   const navigate = useNavigate();
   const navigateToBoardWrite = () => {
-    if (isLoggedIn) {
-      navigate("/write");
-    } else {
-      alert("빌려주기를 하려면 로그인이 필요합니다.");
-    }
+    // if (isLoggedIn) {
+    //   navigate("/write");
+    // } else {
+    //   alert("빌려주기를 하려면 로그인이 필요합니다.");
+    // }
+    navigate('/write');
   };
 
   const handleButtonClick = () => {
     if (isLoggedIn) {
+      localStorage.removeItem("memberdata");
       handleLogout();
-      localStorage.removeItem("memberData");
     } else {
+      navigate('/login');
       handleLoginSuccess();
     }
   };

@@ -18,6 +18,7 @@ import { DivRoot } from './assets/HomeCss/HomeCss';
 import GlobalMyPage from './assets/MyPageCss/GlobalMyPage';
 import GlobalChating from './assets/ChatingCss/GlobalChating';
 import { AuthProvider } from './AuthContext';
+import MapList from './screens/MapList';
 
 function App() {
   // Determine the global component based on the current path
@@ -47,7 +48,8 @@ function App() {
         <DivRoot>
           {globalComponent}
           <NavBar />
-          <Routes>
+          <MapList />
+          {/* <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<MyPage />} />
             <Route path="/board" element={<BoardList />} />
@@ -58,7 +60,7 @@ function App() {
             <Route path="/oauth/redirected/kakao" element={<KakaoRedirectPage />} />
             <Route path='/chat' element={<Chating />} />
             <Route path='/delete' element={<BoardDelete />} />
-          </Routes>
+          </Routes> */}
         </DivRoot>
       </Router>
     </AuthProvider>

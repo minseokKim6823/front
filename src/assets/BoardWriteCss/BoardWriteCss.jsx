@@ -109,6 +109,8 @@ export const TitleInput = styled.input`
   font-size: 20px;
   border: 2px solid black;
   border-radius: 3px;
+  margin: none;
+  padding: none;
 `;
 
 export const Div4 = styled.div`
@@ -203,6 +205,14 @@ export const Div9 = styled.div`
   border: 1px solid var(--color-darkgray);
   box-sizing: border-box;
   height: 110px;
+  z-index: 1;
+`;
+export const LocateDiv = styled.div`
+  width: 716px;
+  position: relative;
+  border: 1px solid var(--color-darkgray);
+  box-sizing: border-box;
+  height: 523px;
   z-index: 1;
 `;
 export const Div10 = styled.div`
@@ -350,7 +360,8 @@ export const Div16 = styled.div`
 `;
 export const Div17 = styled.div`
   position: absolute;
-  height: calc(100% - 64px);
+  /* height: calc(100% - 64px); */
+  height: 1373px;
   top: 72px;
   bottom: -8px;
   left: calc(50% - 365px);
@@ -510,4 +521,41 @@ export const DivRoot = styled.div`
   font-size: var(--font-size-lg);
   color: var(--color-gray-100);
   font-family: var(--font-roboto);
+`;
+
+export const ModalTolocation = styled.button`
+  position: relative;
+  left: none;
+  margin: none;
+  padding: none;
+  height: 35px;
+  width: 35px;
+  border-radius:3px;
+`;
+
+export const ModalContainer = styled.div`
+  position: fixed;
+  z-index: 999;
+  left: 350px;
+  top: 50%;
+  transform: translate(-20%, -50%);
+  width: 900px;
+  height: 450px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: show;
+`;
+
+export const ModalContent = styled.div`
+  padding: 20px;
+`;
+export const ModalBackground = styled.div`
+  position: fixed;
+  z-index: 998;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 `;

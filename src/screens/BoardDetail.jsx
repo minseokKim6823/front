@@ -1,8 +1,6 @@
 import { useParams } from "react-router-dom";
-import { B, Container, ContentTextarea, Div, Div1, Div16, Div2, Div3, Div4, Div5, Div6, Div7, Div8, DivRoot, Frame1, FrameDiv, Icon1, Parent, ProductPhoto, Text, Wrapper } from "../assets/BoardDetailCss/BoardDetailCss";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import Board from './Board';
 
 const BoardDetail = () => {
@@ -10,35 +8,40 @@ const BoardDetail = () => {
   const [loading, setLoading] = useState(true);
   const [board, setBoard] = useState({});
   const [error, setError] = useState(null);
-  const getBoard = async () => {
-    try {
-      const resp = await (await axios.get(`//localhost:8080/board/${boardId}`)).data;
-      setBoard(resp);
-    } catch (e) {
-
-      console.log(e);
-      throw (e);
-    }
-    setLoading(false);
-  };
 
   useEffect(() => {
+    const getBoard = async () => {
+      try {
+        const resp = await axios.get(`//localhost:8080/board/${boardId}`);
+        setBoard(resp.data);
+        setLoading(false);
+      } catch (e) {
+        console.log(e);
+        setError(e);
+        setLoading(false);
+      }
+    };
     getBoard();
-  }, []);
+  }, [boardId]); // boardId가 변경될 때마다 호출되도록 수정
 
   return (
     <>
-      <Board
-        postImg={board.postImg}
-        severId={board.severId}
-        boardId={board.boardId}
-        profileImage={board.profileImage}
-        nickname={board.nickname}
-        title={board.title}
-        contents={board.contents}
-        clothCategory={board.clothCategory}
-        gender={board.gender}
-      />
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <Board
+          postImg={board.postImg}
+          severId={board.serverId}
+          profileImage={board.profileImage}
+          nickname={board.nickname}
+          title={board.title}
+          contents={board.contents}
+          clothCategory={board.clothCategory}
+          gender={board.gender}
+          place={board.place}
+        />
+      )}
+      {error && <div>Error: {error.message}</div>}
     </>
   );
 };

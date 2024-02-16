@@ -1,12 +1,14 @@
+import React from 'react';
 import GenderDropdown from "../components/BoardWrite/GenderDropdown";
 import ClothingDropdown from "../components/BoardWrite/ClothingDropdown";
-import { Div, Div1, Div12, Div14, Div15, Div16, Div17, Div3, Div4, Div6, Div7, Div8, Div9, DivRoot, Text1, Wrapper, Text, B, Div13, TitleInput, ContentTextarea, Cancelbutton, Registerbutton } from "../assets/BoardWriteCss/BoardWriteCss";
+import { Div, Div1, Div12, Div14, Div15, Div16, Div17, Div3, Div4, Div6, Div7, Div8, Div9, DivRoot, Text1, Wrapper, Text, B, Div13, TitleInput, ContentTextarea, Cancelbutton, Registerbutton, ModalTolocation, ModalBackground, ModalContainer, ModalContent, LocateDiv } from "../assets/BoardWriteCss/BoardWriteCss";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import PriceFormat from "../components/BoardWrite/PriceFormat";
 import axios from "axios";
 import ImageUpload from "../components/BoardWrite/ImageUpload";
 import AWS from 'aws-sdk';
+import MapComponent from "../test/MapComponent";
 
 const BoardWrite = () => {
   const navigate = useNavigate();
@@ -14,17 +16,21 @@ const BoardWrite = () => {
   const [serverId, setId] = useState(-1);
   const [price, setPrice] = useState(0);
   const [postImg, setPostImg] = useState([]);
+  const [position, setPosition] = useState({ lat: 37.5665, lng: 126.978 });
+  const [address, setAddress] = useState('');
   const [board, setBoard] = useState({
     serverId: '-1',
     title: '',
     contents: '',
-    price: 0,
+    address: '',
     gender: '',
     clothCategory: '',
     place: '',
     currentTime: new Date(),
     postImg: '',
+    position: '',
   });
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the modal visibility
 
   // 로컬스토리지에서 유저 정보 가져오기
   useEffect(() => {
@@ -32,7 +38,6 @@ const BoardWrite = () => {
     if (memberInfo) {
       // memberInfo 있으면 파싱하여 상태 업데이트
       const parsedData = JSON.parse(memberInfo);
-      //   console(parsedData);
       setNickname(memberInfo.nickname);
       setId(parsedData.serverId);
       setBoard(prevBoard => ({
@@ -106,6 +111,16 @@ const BoardWrite = () => {
     navigate('/');
   };
 
+  // Open modal function
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  // Close modal function
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <Div17>
@@ -151,15 +166,17 @@ const BoardWrite = () => {
           <ContentTextarea placeholder="본문을 작성해주세요" type='text' name='contents' value={contents} onChange={onChange}
           />
         </Div13>
-        <Div9>
+        <LocateDiv>
           <Div15>
             <Text1>거래희망지역</Text1>
           </Div15>
           <Div14>
             <TitleInput placeholder="위치를 입력해주세요"
-              type="text" name="place" value={place} onChange={onChange} />
+              type="text" name="place" value={address} onChange={onChange} />
+            <ModalTolocation onClick={openModal}>go</ModalTolocation>
           </Div14>
-        </Div9>
+          <MapComponent position={position} setPosition={setPosition} address={address} setAddress={setAddress} board={board} setBoard={setBoard} />
+        </LocateDiv>
         <Div16>
           <Registerbutton onClick={saveBoard}>
             <B>등록하기</B>

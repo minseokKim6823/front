@@ -7,7 +7,7 @@ export const MapWrap = styled.div`
   height: 700px;
   width: 100%;
   border-radius: none;
-  background-color: blue;
+  background-color: white;
   border: none;
   overflow: hidden;
   display: flex;
@@ -32,9 +32,14 @@ export const MapArea = styled.div`
     height: 100%;
     margin: none;
     padding: none;
-    background-color: green;
+    background-color: white;
     display: flex;
     flex-direction: column;
+`;
+
+export const CheckBoxContainer = styled.div`
+  position: absolute;
+
 `;
 
 export const ListContainer = styled.div`
@@ -49,24 +54,32 @@ export const ListContainer = styled.div`
 
 export const GenderCheckboxWrapper = styled.div`
     position: absolute;
-    margin-top: 80%;
-    margin-left: 20px;
-    background-color: blue;
+    margin: none;
+    top: 100px;
+    left: 200px;
+    background-color: whtie;
 `;
 
 export const ClothingCheckboxWrapper = styled.div`
-    margin-bottom: 10px;
+  position: absolute;
+  top: 100px;
+  left: 10px;
 `;
 
 export const SearchButton = styled.button`
-    padding: 10px 20px;
+  position: absolute;
+  width: 80px;
+  height: 30px;
+  left: 90px;
+  top: 150px;
+    padding: none;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     &:hover {
-        background-color: #45a049;
+        background-color: #36803a;
     }
 `;
 
@@ -75,7 +88,7 @@ export const SearchContainer = styled.div`
     margin: none;
     padding: none;
     width: 100%;
-    height: 250px;
+    height: 200px;
     background-color: gray;
 `;
 
@@ -83,7 +96,9 @@ export const TitleSearchInput = styled.input`
     position: absolute;
     margin: none;
     padding: none;
-    width: 100px;
+    top: 40px;
+    left: 30px;
+    width: 200px;
     height: 30px;
     border: 1px solid black;
 `;
@@ -93,8 +108,8 @@ export const ProductConatiner = styled.div`
     margin: none;
     padding: none;
     width: 100%;
-    margin-top: 250px;
-    background-color: orange;
+    margin-top: 200px;
+    background-color: white;
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -168,3 +183,11 @@ export const ClothContents = styled.div`
 `;
 
 export const GoToDetailButton = styled.button``;
+
+export const SearchTitle = styled.div`
+  position: absolute;
+`;
+
+export const ClothCategory = styled.div`
+
+`;

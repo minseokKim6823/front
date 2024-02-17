@@ -1,34 +1,36 @@
-import React, { useEffect, useState } from 'react'
-import { ClothContents, ClothImg, ClothingCheckboxWrapper, GenderCheckboxWrapper, GoToDetailButton, ListContainer, MapArea, MapWrap, ProductCard, ProductConatiner, ProductShow, SearchButton, SearchContainer, SellerName, Title, TitleSearchInput } from '../assets/MapListCss/MapListCss'
-import Map from '../components/MapList/Map'
-import List from '../components/MapList/List'
-import axios from 'axios'
+import React, { useEffect, useState } from 'react';
+import { ClothContents, ClothImg, ClothingCheckboxWrapper, GenderCheckboxWrapper, GoToDetailButton, ListContainer, MapArea, MapWrap, ProductCard, ProductConatiner, ProductShow, SearchButton, SearchContainer, SearchTitle, SellerName, Title, TitleSearchInput } from '../assets/MapListCss/MapListCss';
+import Map from '../components/MapList/Map';
+import List from '../components/MapList/List';
+import axios from 'axios';
+
 
 const MapList = () => {
     const [search, setSearch] = useState({
         title: '',
         gender: '',
         clothCategory: '',
-    })
+    });
+    // 검색 결과 보드
     const [board, setBoard] = useState('');
-    // Useffect 사용해서 사이트 첫 접속시 전체 이미지 띄워주기
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await axios.get('YOUR_API_ENDPOINT');
-    //             setBoard(response.data);
-    //         } catch (error) {
-    //             console.error('Error fetching board data:', error);
-    //             // Handle error appropriately, e.g., setBoard([]) or display an error message
-    //         }
-    //     };
-    //     fetchData();
-    //     // Cleanup function (optional)
-    //     return () => {
-    //         // Perform any cleanup, if necessary
-    //     };
-    // }, []); // Empty dependency array ensures this effect runs only once during component mount
-    // 검색하기 로직(params)
+    const handleTitleChange = (e) => {
+        setSearch(prevState => ({
+            ...prevState,
+            title: e.target.value,
+        }));
+    };
+    const handleGenderChange = (e) => {
+        setSearch(prevState => ({
+            ...prevState,
+            gender: e.target.value,
+        }));
+    };
+    const handleClothCategoryChange = (e) => {
+        setSearch(prevState => ({
+            ...prevState,
+            clothCategory: e.target.value,
+        }));
+    };
     const searchBoard = async () => {
         const { title, gender, clothCategory } = search;
         try {
@@ -45,29 +47,35 @@ const MapList = () => {
             <MapWrap>
                 <ListContainer>
                     <SearchContainer>
-                        <TitleSearchInput />
+                        <SearchTitle>검색하기</SearchTitle>
+                        <TitleSearchInput type='text' placeholder='제목을 입력하세요' onChange={handleTitleChange} />
                         <GenderCheckboxWrapper>
-                            <input type="checkbox" id="male" name="gender" value="male" />
+                            <input type="radio" id="male" name="gender" value="male" onChange={handleGenderChange} />
                             <label htmlFor="male">남성</label>
-                            <input type="checkbox" id="female" name="gender" value="female" />
+                            <input type="radio" id="female" name="gender" value="female" onChange={handleGenderChange} />
                             <label htmlFor="female">여성</label>
                         </GenderCheckboxWrapper>
                         <ClothingCheckboxWrapper>
-                            <input type="checkbox" id="tops" name="tops" value="tops" />
-                            <label htmlFor="tops">Tops</label>
-                            <input type="checkbox" id="bottoms" name="bottoms" value="bottoms" />
-                            <label htmlFor="bottoms">Bottoms</label>
-                            <input type="checkbox" id="outerwear" name="outerwear" value="outerwear" />
-                            <label htmlFor="outerwear">Outerwear</label>
+                            <input type="radio" id="tops" name="clothing" value="tops" onChange={handleClothCategoryChange} />
+                            <label htmlFor="tops">상의</label>
+                            <input type="radio" id="bottoms" name="clothing" value="bottoms" onChange={handleClothCategoryChange} />
+                            <label htmlFor="bottoms">하의</label>
+                            <input type="radio" id="outerwear" name="clothing" value="outerwear" onChange={handleClothCategoryChange} />
+                            <label htmlFor="outerwear">아우터</label>
                         </ClothingCheckboxWrapper>
-                        <SearchButton>Search</SearchButton>
+                        <SearchButton onClick={searchBoard}>Search</SearchButton>
                     </SearchContainer>
                     <ProductConatiner>
                         <ProductShow>상품정보</ProductShow>
                         <ProductCard>
-                            <Title>안녕하세요</Title>
+                            <Title>타이틀</Title>
                             <ClothImg></ClothImg>
-                            <SellerName></SellerName>
+                            <SellerName>닉네임</SellerName>
+                            {/* <ClothCategory>
+                                <GenderTitle>{board.gender}</GenderTitle>
+                                <Div13>{`>`}</Div13>
+                                <ClothTitle>{board.clothCategory}</ClothTitle>
+                            </ClothCategory> */}
                             <ClothContents></ClothContents>
                             {/* <GoToDetailButton></GoToDetailButton> */}
                         </ProductCard>
@@ -78,7 +86,7 @@ const MapList = () => {
                 </MapArea>
             </MapWrap>
         </>
-    )
-}
+    );
+};
 
-export default MapList
+export default MapList;

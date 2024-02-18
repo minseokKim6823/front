@@ -10,6 +10,7 @@ const BoardDetail = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    console.log(11212)
     const getBoard = async () => {
       try {
         const resp = await axios.get(`//localhost:8080/board/${boardId}`);

@@ -11,7 +11,7 @@ const MapComponent = ({ position, setPosition, address, setAddress, board, setBo
         getAddress(newPosition.lat, newPosition.lng);
         setBoard(prevBoard => ({
             ...prevBoard,
-            postion: position,
+            position: newPosition,
         }));
         console.log(board);
     };

@@ -23,15 +23,19 @@ function ReactMapTest() {
 
 
     useEffect(() => {
+
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('YOUR_PRODUCTS_API_ENDPOINT');
+                const response = await axios.get(`//localhost:8080/board/all`);
                 setMarkerData(response.data);
+            
+                console.log(response.data);
             } catch (error) {
                 console.error('Error fetching products:', error);
             }
         };
         fetchProducts();
+        
     }, []);
 
     const { isLoaded } = useJsApiLoader({
@@ -49,10 +53,10 @@ function ReactMapTest() {
             center={center}
             zoom={10}
         >
-            {markerData.map(({ id, price, seoullocation, postImg, title, contents, boardId }) => (
+            {markerData.map(({ price, position, postImg, title, contents, boardId }) => (
                 <Marker
-                    key={id}
-                    position={seoullocation}
+                    key={boardId}
+                    position={position}
                     onClick={() => handleMarkerClick(boardId)} // 클릭 시 선택된 마커 설정
                 >
                     {selectedMarker === boardId && ( // 선택된 마커에 대한 InfoWindow 표시 여부 확인
@@ -60,11 +64,11 @@ function ReactMapTest() {
                             onCloseClick={() => setSelectedMarker(null)} // 닫기 버튼 클릭 시 선택된 마커 초기화
                         >
                             <div style={{ padding: '10px', maxWidth: '200px', width: '300px' }}>
-                                <img src={postImg} alt="Product Image" style={{ width: '250px', marginBottom: '5px' }} />
+                                <img src={postImg[0]} alt="Product Image" style={{ width: '250px', marginBottom: '5px' }} />
                                 <p style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '5px' }}>{title}</p>
                                 <p style={{ marginBottom: '5px' }}>{contents}</p>
                                 <span style={{ color: 'blue', fontSize: '14px' }}>₩{price}</span>
-                                <Link to="/board/:boardId">상세보기</Link>
+                                <Link to={`/board/${boardId}`}>상세보기</Link>
                             </div>
                         </InfoWindow>
 

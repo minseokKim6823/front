@@ -3,16 +3,37 @@ import { ClothContents, ClothImg, ClothingCheckboxWrapper, GenderCheckboxWrapper
 import Map from '../components/MapList/Map';
 import List from '../components/MapList/List';
 import axios from 'axios';
+import ReactMapTest from '../test/MapWithReactTest';
 
 
 const MapList = () => {
+    const [markerData, setMarkerData] = useState([]);
     const [search, setSearch] = useState({
         title: '',
         gender: '',
         clothCategory: '',
     });
+    // // 첫 렌더링시 전체 보드 가져오기
+    // useEffect(() => {
+    //     const fetchProducts = async () => {
+    //         try {
+    //             const response = await axios.get('//localhost:8080/board');
+    //             setMarkerData(response.data);
+    //         } catch (error) {
+    //             console.error('Error fetching products:', error);
+    //         }
+    //     };
+    //     fetchProducts();
+    // }, []);
     // 검색 결과 보드
-    const [board, setBoard] = useState('');
+    const [board, setBoard] = useState({
+        title: '',
+        postImg: '',
+        contents: '',
+        nickname: '',
+        price: '',
+        position: '',
+    });
     const handleTitleChange = (e) => {
         setSearch(prevState => ({
             ...prevState,
@@ -82,7 +103,7 @@ const MapList = () => {
                     </ProductConatiner>
                 </ListContainer>
                 <MapArea>
-                    <Map />
+                    <ReactMapTest />
                 </MapArea>
             </MapWrap>
         </>

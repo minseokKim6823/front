@@ -16,7 +16,7 @@ import KakaoRedirectPage from './components/Login/KakaoRedirectPage';
 import Chating from './screens/Chating';
 import { DivRoot } from './assets/HomeCss/HomeCss';
 import GlobalMyPage from './assets/MyPageCss/GlobalMyPage';
-import GlobalChating from './assets/ChatingCss/GlobalChating';
+import GlobalChating from './assets/ChatingCss/GlobalChating';
 import { AuthProvider } from './AuthContext';
 import MapList from './screens/MapList';
 import MapWithProducts from './test/MapWithMarkers';

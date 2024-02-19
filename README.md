@@ -9,4 +9,8 @@
 3. How to use
 
 4. Project Architecture
+<<<<<<< HEAD
+"# test" 
+=======
+>>>>>>> 1799fb1594fbe4f24be8244ddcf1aa29a646ab27
 "# test" 

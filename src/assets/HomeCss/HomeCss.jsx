@@ -207,7 +207,7 @@ export const Div8 = styled.div`
   position: absolute;
   top: 72px;
   left: calc(50% - 358px);
-  border-radius: 0px 0px var(--br-xl) var(--br-xl);
+  border-radius: none;
   background-color: var(--color-white);
   border: 1px solid var(--color-darkgray);
   overflow: hidden;

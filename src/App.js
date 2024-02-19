@@ -18,9 +18,6 @@ import { DivRoot } from './assets/HomeCss/HomeCss';
 import GlobalMyPage from './assets/MyPageCss/GlobalMyPage';
 import GlobalChating from './assets/ChatingCss/GlobalChating';
 import { AuthProvider } from './AuthContext';
-import MapList from './screens/MapList';
-import MapWithProducts from './test/MapWithMarkers';
-import MyComponent from './test/MapWithReactTest';
 
 function App() {
   // Determine the global component based on the current path

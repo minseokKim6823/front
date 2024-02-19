@@ -10,13 +10,24 @@ const KakaoRedirectPage = () => {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const { handleLoginSuccess } = useAuth();
+
+    useEffect(() => {
+        const memberData = localStorage.getItem('memberdata');
+        if (memberData) {
+            setIsLoggedIn(true);
+        }
+    }, []);
+
     const handleOAuthKakao = async (code) => {
         try {
             const response = await axios.get(`http://localhost:8080/oauth/login/kakao?code=${code}`);
             const data = response.data;
             alert("로그인 성공: ");
             localStorage.setItem('memberdata', JSON.stringify(data));
-            handleLoginSuccess();
+            const memberData = localStorage.getItem('memberdata');
+            if (memberData) {
+                handleLoginSuccess();
+            }
             navigate(`/`);
         } catch (error) {
             alert("로그인에 실패하셨습니다.");
@@ -28,7 +39,7 @@ const KakaoRedirectPage = () => {
         const searchParams = new URLSearchParams(location.search);
         const code = searchParams.get('code');
         if (code) {
-            alert("CODE = " + code)
+            alert("CODE = " + code);
             handleOAuthKakao(code);
         }
     }, [location]);

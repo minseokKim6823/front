@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import React, { useState, useEffect } from 'react';
+import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
+const containerStyle = {
+    position: 'absolute',
+    top: '120px',
+    left: '0%',
+    width: '800px',
+    height: '400px'
+};
 
-const MapComponent = ({ position, setPosition, address, setAddress, board, setBoard }) => {
-    // const [position, setPosition] = useState({ lat: 37.5665, lng: 126.978 });
-    // const [address, setAddress] = useState('');
+const center = {
+    lat: 37.5665,
+    lng: 126.978,
+};
+
+function BoardWriteMap({ position, setPosition, address, setAddress, board, setBoard }) {
 
     const handlePositionChanged = (newPosition) => {
         setPosition(newPosition);
@@ -37,6 +49,10 @@ const MapComponent = ({ position, setPosition, address, setAddress, board, setBo
         }
     };
 
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: "AIzaSyAr3oEWRMXEj07I4yIbG5wwWdjwAmuUBkQ"
+    });
 
     const seoulBounds = {
         north: 37.7010,
@@ -45,20 +61,17 @@ const MapComponent = ({ position, setPosition, address, setAddress, board, setBo
         west: 126.7647,
     };
 
-    return (
-        <LoadScript googleMapsApiKey="AIzaSyD1JYAYmtZwv6dmaYMW_gGQfVYh5umSKPQ">
-            <GoogleMap
-                mapContainerStyle={{ height: '400px', width: '800px', top: '120px' }}
-                zoom={12}
-                center={position}
-                options={{ restriction: { latLngBounds: seoulBounds, strictBounds: false } }}
-                onClick={(e) => handlePositionChanged({ lat: e.latLng.lat(), lng: e.latLng.lng() })}
-            >
-                <Marker position={position} draggable={true} onDragEnd={(e) => handlePositionChanged({ lat: e.latLng.lat(), lng: e.latLng.lng() })} />
-            </GoogleMap>
-            <div>{address}</div>
-        </LoadScript>
-    );
-};
+    return isLoaded ? (
+        <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={center}
+            zoom={10}
+            options={{ restriction: { latLngBounds: seoulBounds, strictBounds: false } }}
+            onClick={(e) => handlePositionChanged({ lat: e.latLng.lat(), lng: e.latLng.lng() })}
+        >
+            <Marker position={position} draggable={true} onDragEnd={(e) => handlePositionChanged({ lat: e.latLng.lat(), lng: e.latLng.lng() })} />
+        </GoogleMap>
+    ) : <div>Loading...</div>;
+}
 
-export default MapComponent;
+export default React.memo(BoardWriteMap);

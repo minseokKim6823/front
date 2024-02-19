@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 const ClothingDropdownWrapper = styled.div`
   position: absolute;
-  top: 80px;
+  top: 79px;
   left: calc(50% - 96px);
   border-radius: var(--br-5xs);
-  background-color: var(--color-whitesmoke-100);
-  border: 1px solid var(--color-whitesmoke-200);
+  background-color: white;
+  border: 1px solid white;
   box-sizing: border-box;
   width: 234px;
   height: 30px;

@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const MapWrap = styled.div`
   position: absolute;
-  top: 72px;
-  left: none;
+  top: 515px;
+  left: 0px;
   height: 700px;
   width: 100%;
   border-radius: none;
@@ -27,8 +27,8 @@ export const MapWrap = styled.div`
 
 export const MapArea = styled.div`
     position: absolute;
-    left: 30%;
-    width: calc(70%);
+    left: 0%;
+    width: calc(100%);
     height: 100%;
     margin: none;
     padding: none;

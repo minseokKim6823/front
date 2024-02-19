@@ -1,5 +1,5 @@
 // AuthContext.js
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 export const AuthContext = React.createContext();
 
@@ -9,11 +9,25 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    // Check localStorage on component mount
+    useEffect(() => {
+        const memberData = localStorage.getItem('memberdata');
+        if (memberData) {
+            setIsLoggedIn(true);
+        }
+    }, []);
+
     const handleLoginSuccess = () => {
-        setIsLoggedIn(true);
+        const memberData = localStorage.getItem('memberdata');
+        if (memberData) {
+            setIsLoggedIn(true);
+        }
     };
+
     const handleLogout = () => {
         setIsLoggedIn(false);
+        localStorage.removeItem('memberdata'); // Remove memberdata on logout
     };
 
     return (

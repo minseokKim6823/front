@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 const GenderDropdownWrapper = styled.div`
   position: absolute;
-  top: 90px;
+  top: 80px;
   left: 7px;
   /* border-radius: var(--br-5xs); */
-  background-color: var(--color-whitesmoke-100);
-  border: 1px solid var(--color-whitesmoke-200);
+  background-color: white;
+  border: 1px solid white;
   box-sizing: border-box;
   width: 234px;
   height: 10px;

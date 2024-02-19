@@ -16,26 +16,20 @@ const center = {
     lng: 126.978,
 };
 
-function ReactMapTest() {
+function HomeMap() {
     const [markerData, setMarkerData] = useState([]);
     const [selectedMarker, setSelectedMarker] = useState(null);
-
-
-
     useEffect(() => {
-
         const fetchProducts = async () => {
             try {
                 const response = await axios.get(`//localhost:8080/board/all`);
                 setMarkerData(response.data);
-            
                 console.log(response.data);
             } catch (error) {
                 console.error('Error fetching products:', error);
             }
         };
         fetchProducts();
-        
     }, []);
 
     const { isLoaded } = useJsApiLoader({
@@ -63,15 +57,14 @@ function ReactMapTest() {
                         <InfoWindow
                             onCloseClick={() => setSelectedMarker(null)} // 닫기 버튼 클릭 시 선택된 마커 초기화
                         >
-                            <div style={{ padding: '10px', maxWidth: '200px', width: '300px' }}>
+                            <div style={{ padding: '10px', maxWidth: '200px', width: '300px', height: '200px' }}>
                                 <img src={postImg[0]} alt="Product Image" style={{ width: '250px', marginBottom: '5px' }} />
                                 <p style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '5px' }}>{title}</p>
                                 <p style={{ marginBottom: '5px' }}>{contents}</p>
-                                <span style={{ color: 'blue', fontSize: '14px' }}>₩{price}</span>
+                                <div style={{ color: 'blue', fontSize: '14px' }}>₩{price}</div>
                                 <Link to={`/board/${boardId}`}>상세보기</Link>
                             </div>
                         </InfoWindow>
-
                     )}
                 </Marker>
             ))}
@@ -79,4 +72,4 @@ function ReactMapTest() {
     ) : <div>Loading...</div>;
 }
 
-export default React.memo(ReactMapTest);
+export default React.memo(HomeMap);

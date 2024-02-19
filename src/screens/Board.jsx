@@ -303,7 +303,7 @@ const Card1 = styled.div`
   top: 12.5px;
   left: calc(50% - 100px);
   border-radius: var(--br-xl);
-  box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 16px 16px black;
   width: 200px;
   height: 260px;
   overflow: hidden;

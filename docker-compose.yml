@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 version: "3"
 services:
   web:
@@ -6,13 +5,4 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-=======
-version: "3"
-services:
-  web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
->>>>>>> 1799fb1594fbe4f24be8244ddcf1aa29a646ab27
      - "80:80"

@@ -7,15 +7,4 @@ RUN npm install
 
 COPY . .
 
-=======
-FROM node:16-alpine
-
-WORKDIR '/app'
-
-COPY package.json .
-RUN npm install
-
-COPY . .
-
->>>>>>> 1799fb1594fbe4f24be8244ddcf1aa29a646ab27
 CMD ["npm","run","start"]

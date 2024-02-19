@@ -61,14 +61,14 @@ const BoardList = () => {
           <Div4>
             <Div2>
               <Wrapper>
-                <Div1>서울시 종로구 익선동</Div1>
+                {/* <Div1>서울시 종로구 익선동</Div1> */}
               </Wrapper>
-              <IcroundArrowBackIos>
+              {/* <IcroundArrowBackIos>
                 <VectorIcon alt="" src="/vector.svg" />
-              </IcroundArrowBackIos>
+              </IcroundArrowBackIos> */}
             </Div2>
             <Div3>
-              <Text1>지역</Text1>
+              {/* <Text1>지역</Text1> */}
             </Div3>
           </Div4>
         </Div5>

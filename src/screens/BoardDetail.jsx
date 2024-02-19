@@ -40,6 +40,7 @@ const BoardDetail = () => {
           clothCategory={board.clothCategory}
           gender={board.gender}
           place={board.place}
+          address={board.address}
         />
       )}
       {error && <div>Error: {error.message}</div>}

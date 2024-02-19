@@ -7,17 +7,20 @@ export const NavBarContainer = styled.div`
   right: 0%;
   left: 0%;
   background-color: var(--color-white);
-  border: 1px solid var(--color-darkgray);
+  border: 2px solid black;
+  border-top: none;
+  border-left: none;
+  border-right: none;
   box-sizing: border-box;
   height: 72px;
   overflow: hidden;
 `;
 export const HomeLogo = styled.img`
   position: absolute;
-  top: calc(50% - 20px);
-  left: 20px;
-  width: 40px;
-  height: 40px;
+  top: calc(50% - 24px);
+  left: 10px;
+  width: 48px;
+  height: 48px;
   overflow: hidden;
 `;
 export const ToBoardListButton = styled.button`

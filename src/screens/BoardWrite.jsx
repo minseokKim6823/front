@@ -8,7 +8,7 @@ import PriceFormat from "../components/BoardWrite/PriceFormat";
 import axios from "axios";
 import ImageUpload from "../components/BoardWrite/ImageUpload";
 import AWS from 'aws-sdk';
-import MapComponent from "../components/BoardWrite/MapComponent";
+import BoardWriteMap from '../Map/BoardWriteMap';
 
 const BoardWrite = () => {
   const navigate = useNavigate();
@@ -59,11 +59,24 @@ const BoardWrite = () => {
     });
   };
 
-  // 저장
+  // 수정된 saveBoard 함수
   const saveBoard = async () => {
-    const UploadedImageURLs = await handleImageUpload(postImg);
+    // Check if any required fields are empty
+    if (postImg.length === 0 || title.trim() === '' || contents.trim() === '' || board.gender.trim() === '성별' || board.clothCategory.trim() === '의류 카테고리' || price === 0 || address.trim() === '') {
+      // Modified board.gender and board.clothCategory, added price and place check
+      let errorMessage = '다음 요건을 충족해주세요:';
+      if (postImg.length === 0) errorMessage += '\n- 이미지 최소 1장 이상 등록해주세요.';
+      if (title.trim() === '') errorMessage += '\n- 제목을 입력해주세요.';
+      if (contents.trim() === '') errorMessage += '\n- 본문을 작성해주세요.';
+      if (board.gender.trim() === '성별') errorMessage += '\n- 성별을 선택해주세요.';
+      if (board.clothCategory.trim() === '의류 카테고리') errorMessage += '\n- 의류 카테고리 선택해주세요.';
+      if (price === 0) errorMessage += '\n- 가격을 입력해주세요.';
+      if (address.trim() === '') errorMessage += '\n- 거래 희망 지역을 마커로 설정해주세요.';
+      alert(errorMessage);
+      return;
+    }
 
-    // Update board with the uploadedImageURLs
+    const UploadedImageURLs = await handleImageUpload(postImg);
     const updatedBoard = {
       ...board,
       postImg: UploadedImageURLs, // Assuming 'postImg' is the field to store image URLs in your board
@@ -74,6 +87,8 @@ const BoardWrite = () => {
       navigate('/board');
     });
   };
+
+
 
   // 이미지 업로드
   const handleImageUpload = async (uploadedImages) => {
@@ -171,11 +186,10 @@ const BoardWrite = () => {
             <Text1>거래희망지역</Text1>
           </Div15>
           <Div14>
-            <TitleInput placeholder="위치를 입력해주세요"
+            <TitleInput placeholder="원하시는 거래위치로 드래그해주세요"
               type="text" name="place" value={address} onChange={onChange} />
-            <ModalTolocation onClick={openModal}>go</ModalTolocation>
           </Div14>
-          <MapComponent position={position} setPosition={setPosition} address={address} setAddress={setAddress} board={board} setBoard={setBoard} />
+          <BoardWriteMap position={position} setPosition={setPosition} address={address} setAddress={setAddress} board={board} setBoard={setBoard} />
         </LocateDiv>
         <Div16>
           <Registerbutton onClick={saveBoard}>

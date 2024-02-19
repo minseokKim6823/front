@@ -352,11 +352,13 @@ const DivRoot = styled.div`
   font-family: var(--font-roboto);
 `;
 
-const Board = ({ postImg, profileImage, nickname, title, contents, clothCategory, gender, place }) => {
+const Board = ({ postImg, profileImage, nickname, title, contents, clothCategory, gender, place, address }) => {
   return (
     <>
       <Div16>
-        <Icon src={postImg[0]} alt="이미지 로딩중"/>
+        {postImg.map((imgSrc, index) => (
+          <Icon src={imgSrc} alt={`Image ${index}`} key={index} />
+        ))}
         <Div1>
           <Parent>
             <Icon1 src={profileImage} alt="이미지 로딩중" />
@@ -382,10 +384,10 @@ const Board = ({ postImg, profileImage, nickname, title, contents, clothCategory
           </Div4>
           <Frame1>
             <Div6>
-              <Text>{place}</Text>
+              <Text>{address}</Text>
             </Div6>
           </Frame1>
-       
+
         </Div7>
         <FrameDiv>
           <Div8>
